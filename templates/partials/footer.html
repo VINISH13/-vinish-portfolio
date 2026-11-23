@@ -1,0 +1,38 @@
+{% url 'portfolio:home' as home_url %}
+<footer class="site-footer">
+  <div class="footer-glow" aria-hidden="true"></div>
+  <div class="container">
+    <div class="row g-4 align-items-start">
+      <div class="col-lg-5">
+        <a class="brand mb-3 d-inline-flex" href="{{ home_url }}#home">
+          <span class="brand__mark">&lt;/&gt;</span>
+          <span class="brand__text">{% if profile %}{{ profile.first_name }}<span class="text-gradient">.dev</span>{% else %}Portfolio{% endif %}</span>
+        </a>
+        <p class="text-muted-soft mb-4 footer-blurb">
+          {{ profile.headline|default:"Developer" }} crafting fast, scalable and beautiful web experiences with Python &amp; Django.
+        </p>
+        {% include "partials/social_links.html" %}
+      </div>
+      <div class="col-6 col-lg-3 offset-lg-1">
+        <h6 class="footer-title">Navigate</h6>
+        <ul class="footer-links">
+          {% for anchor, label in nav_items %}
+            <li><a href="{{ home_url }}#{{ anchor }}">{{ label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="col-6 col-lg-3">
+        <h6 class="footer-title">Get in touch</h6>
+        <ul class="footer-links">
+          {% if profile.email %}<li><a href="mailto:{{ profile.email }}"><i class="bi bi-envelope me-2"></i>{{ profile.email }}</a></li>{% endif %}
+          {% if profile.location %}<li><span><i class="bi bi-geo-alt me-2"></i>{{ profile.location }}</span></li>{% endif %}
+          {% if profile.resume %}<li><a href="{{ profile.resume.url }}" download><i class="bi bi-file-earmark-arrow-down me-2"></i>Download resume</a></li>{% endif %}
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; {{ current_year }} {{ profile.full_name|default:"Portfolio" }}. All rights reserved.</span>
+      <span class="footer-built">Built with <i class="devicon-django-plain"></i> Django &amp; <i class="bi bi-heart-fill text-gradient"></i></span>
+    </div>
+  </div>
+</footer>

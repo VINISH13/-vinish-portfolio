@@ -1,0 +1,35 @@
+{% url 'portfolio:home' as home_url %}
+<nav class="navbar navbar-expand-lg fixed-top site-nav" id="siteNav" aria-label="Main navigation">
+  <div class="container">
+    <a class="navbar-brand brand" href="{{ home_url }}#home">
+      <span class="brand__mark">&lt;/&gt;</span>
+      <span class="brand__text">{% if profile %}{{ profile.first_name }}<span class="text-gradient">.dev</span>{% else %}Portfolio{% endif %}</span>
+    </a>
+
+    <div class="d-flex align-items-center gap-2 order-lg-last">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
+        <i class="bi bi-moon-stars-fill icon-dark"></i>
+        <i class="bi bi-sun-fill icon-light"></i>
+      </button>
+      {% if profile.resume %}
+        <a class="btn btn-neon btn-sm d-none d-xl-inline-flex" href="{{ profile.resume.url }}" download>
+          <i class="bi bi-download"></i> Resume
+        </a>
+      {% endif %}
+      <button class="navbar-toggler nav-burger" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu"
+              aria-controls="navMenu" aria-expanded="false" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+
+    <div class="collapse navbar-collapse" id="navMenu">
+      <ul class="navbar-nav mx-auto">
+        {% for anchor, label in nav_items %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}">{{ label }}</a>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</nav>

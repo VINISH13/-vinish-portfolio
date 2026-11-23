@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}Page not found{% endblock %}
+{% block content %}
+<section class="section error-page">
+  <div class="container text-center">
+    <div class="error-code text-gradient reveal">404</div>
+    <h1 class="h3 reveal" data-delay="100">This page wandered off into the void.</h1>
+    <p class="text-muted-soft reveal" data-delay="200">The link may be broken or the page may have moved.</p>
+    <a class="btn btn-neon mt-3 reveal" data-delay="300" href="{% url 'portfolio:home' %}"><i class="bi bi-house-door-fill"></i> Back home</a>
+  </div>
+</section>
+{% endblock %}

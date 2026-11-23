@@ -1,0 +1,41 @@
+{% url 'portfolio:home' as home_url %}
+<header class="hud-nav" id="siteNav">
+  <div class="hud-nav__inner">
+    <a class="hud-logo" href="{{ home_url }}#home" aria-label="Home">
+      <span class="hud-logo__bracket">&lt;</span>{{ profile.first_name|default:"PORTFOLIO"|upper }}<span class="hud-logo__bracket">/&gt;</span>
+    </a>
+
+    <nav aria-label="Main navigation">
+      <ul class="hud-links">
+        {% for anchor, label in nav_items %}
+          {% if anchor != "home" %}
+            <li><a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}"><span class="hud-links__num">0{{ forloop.counter0 }}</span>{{ label }}</a></li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+    </nav>
+
+    <div class="hud-nav__actions">
+      <button class="hud-icon" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
+        <i class="bi bi-moon-stars icon-dark"></i><i class="bi bi-brightness-high icon-light"></i>
+      </button>
+      {% if profile.resume %}
+        <a class="btn-neo btn-neo--sm d-none d-md-inline-flex" href="{{ profile.resume.url }}" download><i class="bi bi-download"></i> Resume</a>
+      {% else %}
+        <a class="btn-neo btn-neo--sm d-none d-md-inline-flex" href="{{ home_url }}#contact"><i class="bi bi-broadcast"></i> Contact</a>
+      {% endif %}
+      <button class="hud-icon hud-burger" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navOverlay">
+        <span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="nav-overlay" id="navOverlay" hidden>
+  <nav class="nav-overlay__links" aria-label="Mobile navigation">
+    {% for anchor, label in nav_items %}
+      <a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}" style="--i: {{ forloop.counter0 }}"><span>0{{ forloop.counter0 }}</span>{{ label }}</a>
+    {% endfor %}
+  </nav>
+  <div class="nav-overlay__foot">{% include "v3/partials/socials.html" %}</div>
+</div>

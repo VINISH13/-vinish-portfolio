@@ -1,0 +1,64 @@
+{% extends "v5/base.html" %}
+{% load portfolio_tags %}
+
+{% block title %}{{ project.title }} — {{ profile.full_name|default:"Portfolio" }}{% endblock %}
+{% block meta_description %}{{ project.tagline }}{% endblock %}
+
+{% block content %}
+<section class="section detail">
+  <div class="wrap">
+    <a class="back reveal" href="{% url 'portfolio:home' %}#projects"><i class="bi bi-arrow-left"></i> All projects</a>
+    <span class="shead__label reveal mt-4">{{ project.category.name|default:"Project" }}{% if project.is_featured %} · Featured{% endif %}</span>
+    <h1 class="detail__title"><span class="mask"><span>{{ project.title }}</span></span></h1>
+    <p class="detail__tagline reveal">{{ project.tagline }}</p>
+    {% if project.live_url or project.github_url %}
+      <div class="hero__actions reveal">
+        {% if project.live_url %}<a href="{{ project.live_url }}" class="btn-solid" target="_blank" rel="noopener">Live demo <i class="bi bi-arrow-up-right"></i></a>{% endif %}
+        {% if project.github_url %}<a href="{{ project.github_url }}" class="btn-line" target="_blank" rel="noopener"><i class="bi bi-github"></i> Source code</a>{% endif %}
+      </div>
+    {% endif %}
+
+    <div class="detail__media reveal">
+      {% if project.image %}
+        <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}">
+      {% else %}
+        <i class="bi {{ project.icon }}" aria-hidden="true"></i>
+      {% endif %}
+    </div>
+
+    <div class="detail__grid">
+      <div class="reveal">
+        <h2 class="detail__h">Overview</h2>
+        {% for p in project.description|paragraphs %}<p class="about__text">{{ p }}</p>{% endfor %}
+        {% if project.features_list %}
+          <h3 class="detail__h mt-5">Key features</h3>
+          <ul class="lines">{% for f in project.features_list %}<li>{{ f }}</li>{% endfor %}</ul>
+        {% endif %}
+      </div>
+      <aside class="reveal" data-delay="100">
+        <ul class="facts facts--stack">
+          {% if project.category %}<li><span>Category</span>{{ project.category.name }}</li>{% endif %}
+          {% if project.completed_on %}<li><span>Completed</span>{{ project.completed_on|date:"F Y" }}</li>{% endif %}
+          <li><span>Technologies</span>{% include "v5/partials/tags.html" with technologies=project.technologies.all limit=0 %}</li>
+        </ul>
+      </aside>
+    </div>
+
+    {% if related_projects %}
+      <h2 class="detail__h mt-5">More projects</h2>
+      <div class="plist">
+        {% for project in related_projects %}
+          <article class="pitem reveal">
+            <span class="pitem__num">{{ forloop.counter|stringformat:"02d" }}</span>
+            <div class="pitem__main">
+              <h3 class="pitem__title"><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
+              <p class="pitem__text">{{ project.tagline }}</p>
+            </div>
+            <div class="pitem__side"><span class="pitem__arrow" aria-hidden="true"><i class="bi bi-arrow-up-right"></i></span></div>
+          </article>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,84 @@
+/* Neon theme for the Django admin — overrides Django's CSS variables. */
+:root,
+html[data-theme="light"] {
+  --primary: #7c3aed;
+  --secondary: #4c1d95;
+  --accent: #00b8e6;
+  --primary-fg: #fff;
+  --header-color: #e9e5ff;
+  --header-branding-color: #fff;
+  --header-bg: linear-gradient(90deg, #0b0d1d, #1a1040);
+  --header-link-color: #c4b5fd;
+  --breadcrumbs-bg: #4c1d95;
+  --link-fg: #6d28d9;
+  --link-hover-color: #0891b2;
+  --link-selected-fg: #4c1d95;
+  --button-bg: #7c3aed;
+  --button-hover-bg: #6d28d9;
+  --default-button-bg: #0891b2;
+  --default-button-hover-bg: #0e7490;
+  --selected-row: #f3e8ff;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --primary: #8b5cf6;
+    --secondary: #2e1065;
+    --accent: #00d4ff;
+    --body-bg: #070814;
+    --body-fg: #e5e7f5;
+    --body-quiet-color: #9aa0c3;
+    --darkened-bg: #0e1024;
+    --selected-bg: #1c1840;
+    --selected-row: #1a1638;
+    --hairline-color: #1f2240;
+    --border-color: #2a2d52;
+    --link-fg: #a78bfa;
+    --link-hover-color: #00d4ff;
+    --breadcrumbs-bg: #1a1040;
+    --header-bg: linear-gradient(90deg, #05060f, #1a1040);
+  }
+}
+html[data-theme="dark"] {
+  --primary: #8b5cf6;
+  --secondary: #2e1065;
+  --accent: #00d4ff;
+  --body-bg: #070814;
+  --body-fg: #e5e7f5;
+  --body-quiet-color: #9aa0c3;
+  --darkened-bg: #0e1024;
+  --selected-bg: #1c1840;
+  --selected-row: #1a1638;
+  --hairline-color: #1f2240;
+  --border-color: #2a2d52;
+  --link-fg: #a78bfa;
+  --link-hover-color: #00d4ff;
+  --breadcrumbs-bg: #1a1040;
+  --header-bg: linear-gradient(90deg, #05060f, #1a1040);
+}
+
+#header {
+  background: var(--header-bg);
+  border-bottom: 1px solid rgba(139, 92, 246, 0.35);
+}
+#site-name a { font-weight: 700; letter-spacing: 0.02em; }
+.brand-mark {
+  display: inline-block;
+  padding: 2px 8px;
+  margin-right: 6px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, #00d4ff, #8b5cf6);
+  color: #fff;
+  font-family: ui-monospace, monospace;
+  font-size: 0.85em;
+}
+.module h2, .module caption, .inline-group h2 {
+  background: linear-gradient(90deg, #6d28d9, #0891b2);
+}
+.button, input[type="submit"], .submit-row a.deletelink {
+  border-radius: 8px !important;
+}
+#content-related .module, .module {
+  border-radius: 12px;
+  overflow: hidden;
+}

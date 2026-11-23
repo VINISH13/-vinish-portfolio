@@ -1,0 +1,61 @@
+<section class="section" id="contact">
+  <div class="wrap">
+    {% include "v3/partials/section_head.html" with num="05" label="Contact" title="Open a" highlight="channel" %}
+
+    <div class="contact">
+      <aside class="panel contact__info reveal" data-glow>
+        <p class="contact__lead">Have a role or project in mind? Send a transmission — I'll get back to you soon.</p>
+        <div class="line-item">
+          <a href="mailto:{{ profile.email }}"><i class="bi bi-envelope"></i> {{ profile.email }}</a>
+          <button class="hud-icon" type="button" data-copy="{{ profile.email }}" aria-label="Copy email address"><i class="bi bi-copy"></i></button>
+        </div>
+        {% if profile.phone %}
+          <div class="line-item">
+            <a href="tel:{{ profile.phone|cut:' ' }}"><i class="bi bi-telephone"></i> {{ profile.phone }}</a>
+            <button class="hud-icon" type="button" data-copy="{{ profile.phone }}" aria-label="Copy phone number"><i class="bi bi-copy"></i></button>
+          </div>
+        {% endif %}
+        {% if profile.location %}
+          <div class="line-item"><span><i class="bi bi-geo-alt"></i> {{ profile.location }}</span></div>
+        {% endif %}
+        <div class="contact__social">{% include "v3/partials/socials.html" %}</div>
+      </aside>
+
+      <form class="panel contact__form reveal" data-delay="120" id="contactForm" method="post" action="{% url 'portfolio:contact' %}" novalidate>
+        {% csrf_token %}
+        <p class="panel__title"><i class="bi bi-terminal"></i> new_message.send()</p>
+        {% for message in messages %}
+          <div class="note note--{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+        {% if form.non_field_errors %}<div class="note note--error" role="alert">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="{{ form.website.id_for_label }}">Leave this empty</label>
+          {{ form.website }}
+        </div>
+
+        <div class="row g-3">
+          {% for field in form.visible_fields %}
+            {% if field.name != "website" %}
+              <div class="{% if field.name == 'name' or field.name == 'email' %}col-md-6{% else %}col-12{% endif %}">
+                <div class="form-floating field-neo">
+                  {{ field }}
+                  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                  <div class="invalid-feedback" data-error-for="{{ field.name }}">{{ field.errors|join:" " }}</div>
+                </div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <div class="contact__foot">
+          <small class="dim"><i class="bi bi-shield-lock"></i> Your details stay private. No spam.</small>
+          <button type="submit" class="btn-neo magnetic" id="contactSubmit">
+            <span class="btn-label"><i class="bi bi-send"></i> Transmit</span>
+            <span class="btn-loading"><span class="spinner-border spinner-border-sm"></span> Sending…</span>
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>

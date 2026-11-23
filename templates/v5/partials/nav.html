@@ -1,0 +1,29 @@
+{% url 'portfolio:home' as home_url %}
+<header class="nav" id="siteNav">
+  <div class="wrap nav__inner">
+    <a class="nav__logo" href="{{ home_url }}#home">{{ profile.first_name|default:"Portfolio" }}</a>
+    <nav class="nav__links" aria-label="Main navigation">
+      {% for anchor, label in nav_items %}
+        {% if anchor != "home" %}<a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}">{{ label }}</a>{% endif %}
+      {% endfor %}
+    </nav>
+    <div class="nav__actions">
+      <button class="round-btn" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
+        <i class="bi bi-moon icon-dark"></i><i class="bi bi-sun icon-light"></i>
+      </button>
+      <button class="nav__menu" id="navToggle" type="button" aria-expanded="false" aria-controls="menuOverlay">Menu</button>
+    </div>
+  </div>
+</header>
+
+<div class="menu-overlay" id="menuOverlay" hidden>
+  <nav class="wrap menu-overlay__links" aria-label="Menu">
+    {% for anchor, label in nav_items %}
+      <a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}" style="--i: {{ forloop.counter0 }}"><span>0{{ forloop.counter }}</span>{{ label }}</a>
+    {% endfor %}
+  </nav>
+  <div class="wrap menu-overlay__foot">
+    <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+    {% include "v5/partials/socials.html" %}
+  </div>
+</div>

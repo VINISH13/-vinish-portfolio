@@ -1,0 +1,13 @@
+{% url 'portfolio:home' as home_url %}
+<footer class="footer">
+  <div class="wrap footer__inner">
+    <div class="footer__left">
+      <span class="footer__name">{{ profile.full_name|default:"Portfolio" }}</span>
+      <span class="footer__muted">&copy; {{ current_year }} · Built with Python &amp; Django</span>
+    </div>
+    <div class="footer__social">
+      {% include "v2/partials/socials.html" %}
+    </div>
+    <a class="footer__top" href="{{ home_url }}#home">Back to top <i class="bi bi-arrow-up"></i></a>
+  </div>
+</footer>

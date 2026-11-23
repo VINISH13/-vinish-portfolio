@@ -1,0 +1,10 @@
+{% url 'portfolio:home' as home_url %}
+<footer class="footer">
+  <div class="container-x footer__inner">
+    <div>
+      <a class="brand" href="{{ home_url }}#home">{{ profile.first_name|default:"Portfolio" }}<span class="brand__dot">.</span></a>
+      <p class="footer__note">&copy; {{ current_year }} {{ profile.full_name|default:"" }}. Built with Python &amp; Django.</p>
+    </div>
+    {% include "v4/partials/socials.html" %}
+  </div>
+</footer>

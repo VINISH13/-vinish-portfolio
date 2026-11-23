@@ -1,0 +1,26 @@
+{% load portfolio_tags %}
+<section class="section" id="about">
+  <div class="wrap">
+    {% include "v3/partials/section_head.html" with num="01" label="About" title="Engineering the" highlight="backend" %}
+
+    <div class="about">
+      <div class="about__text reveal">
+        {% for p in profile.about|paragraphs %}
+          <p{% if forloop.first %} class="about__lead"{% endif %}>{{ p }}</p>
+        {% endfor %}
+      </div>
+
+      <div class="panel about__data reveal" data-delay="120" data-glow>
+        <p class="panel__title"><i class="bi bi-person-badge"></i> profile.sys</p>
+        <dl class="kv">
+          {% if profile.location %}<div><dt>location</dt><dd>{{ profile.location }}</dd></div>{% endif %}
+          <div><dt>email</dt><dd><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></dd></div>
+          {% with edu=education.0 %}{% if edu %}
+            <div><dt>education</dt><dd>{{ edu.degree }}{% if edu.field_of_study %} · {{ edu.field_of_study }}{% endif %}</dd></div>
+          {% endif %}{% endwith %}
+          <div><dt>status</dt><dd class="kv__ok">{% if profile.available_for_work %}● available{% else %}○ unavailable{% endif %}</dd></div>
+        </dl>
+      </div>
+    </div>
+  </div>
+</section>

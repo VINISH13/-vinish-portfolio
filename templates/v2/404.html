@@ -1,0 +1,12 @@
+{% extends "v2/base.html" %}
+{% block title %}Page not found{% endblock %}
+{% block content %}
+<section class="section notfound">
+  <div class="wrap text-center">
+    <p class="notfound__code grad">404</p>
+    <h1 class="sec-title">This page doesn't exist.</h1>
+    <p class="muted">The link may be broken or the page may have moved.</p>
+    <a class="btn-x btn-x--primary mt-3" href="{% url 'portfolio:home' %}"><i class="bi bi-house"></i> Back home</a>
+  </div>
+</section>
+{% endblock %}

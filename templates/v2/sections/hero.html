@@ -1,0 +1,76 @@
+<section class="hero" id="home">
+  <div class="wrap">
+    <div class="bento">
+      <article class="card card--intro reveal" data-spotlight>
+        {% if profile.available_for_work %}
+          <span class="live-badge"><span class="live-badge__dot"></span>Open to opportunities</span>
+        {% endif %}
+
+        <h1 class="hero-title">Hi, I'm <span class="grad">{{ profile.full_name }}</span></h1>
+
+        <p class="hero-role" aria-live="polite">
+          <span class="hero-role__prompt">~$</span>
+          <span id="typedText">{{ profile.roles_list.0 }}</span><span class="caret" aria-hidden="true"></span>
+        </p>
+
+        <p class="hero-intro">{{ profile.hero_intro }}</p>
+
+        <div class="hero-actions">
+          <a href="#contact" class="btn-x btn-x--primary"><i class="bi bi-send"></i> Contact me</a>
+          {% if profile.resume %}
+            <a href="{{ profile.resume.url }}" class="btn-x btn-x--ghost" download><i class="bi bi-download"></i> Resume</a>
+          {% else %}
+            <a href="#projects" class="btn-x btn-x--ghost"><i class="bi bi-grid"></i> View work</a>
+          {% endif %}
+          <span class="hero-actions__divider" aria-hidden="true"></span>
+          {% if profile.github_url %}<a class="icon-btn icon-btn--lg" href="{{ profile.github_url }}" target="_blank" rel="noopener" aria-label="GitHub"><i class="bi bi-github"></i></a>{% endif %}
+          {% if profile.linkedin_url %}<a class="icon-btn icon-btn--lg" href="{{ profile.linkedin_url }}" target="_blank" rel="noopener" aria-label="LinkedIn"><i class="bi bi-linkedin"></i></a>{% endif %}
+        </div>
+      </article>
+
+      <article class="card card--photo reveal" data-delay="80">
+        {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}" alt="Portrait of {{ profile.full_name }}" width="800" height="800">
+        {% else %}
+          <span class="card--photo__name grad">{{ profile.first_name }}</span>
+        {% endif %}
+        <div class="photo-meta">
+          <span class="photo-meta__name">{{ profile.full_name }}</span>
+          {% if profile.location %}<span class="photo-meta__loc"><i class="bi bi-geo-alt"></i> {{ profile.location }}</span>{% endif %}
+        </div>
+      </article>
+
+      <article class="card card--stat reveal" data-delay="120" data-spotlight>
+        <span class="stat-num"><span data-count="{{ profile.years_experience }}">0</span><sup>+</sup></span>
+        <span class="stat-label">Years of experience</span>
+        <i class="bi bi-briefcase stat-icon" aria-hidden="true"></i>
+      </article>
+
+      <article class="card card--stat reveal" data-delay="160" data-spotlight>
+        <span class="stat-num"><span data-count="{{ profile.projects_completed }}">0</span><sup>+</sup></span>
+        <span class="stat-label">Projects worked</span>
+        <i class="bi bi-kanban stat-icon" aria-hidden="true"></i>
+      </article>
+
+      {% with current=experiences.0 %}
+      <article class="card card--now reveal" data-delay="200" data-spotlight>
+        <span class="card-kicker"><i class="bi bi-lightning-charge"></i> {% if current.is_current %}Currently{% else %}Latest role{% endif %}</span>
+        {% if current %}
+          <h2 class="now-title">{{ current.title }}</h2>
+          <p class="now-sub">{{ current.company }} · since {{ current.start_date|date:"M Y" }}</p>
+        {% else %}
+          <h2 class="now-title">{{ profile.headline }}</h2>
+        {% endif %}
+        <div class="now-stack">
+          <i class="devicon-python-plain colored" title="Python"></i>
+          <i class="devicon-django-plain" title="Django"></i>
+          <i class="devicon-mysql-original colored" title="MySQL"></i>
+          <i class="devicon-redis-plain colored" title="Redis"></i>
+          <i class="devicon-bootstrap-plain colored" title="Bootstrap"></i>
+          <i class="devicon-git-plain colored" title="Git"></i>
+        </div>
+      </article>
+      {% endwith %}
+    </div>
+  </div>
+</section>

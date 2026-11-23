@@ -1,0 +1,30 @@
+{# Reusable project card. Param: project #}
+<article class="project-card glass-card gradient-border tilt">
+  <a class="project-card__media" href="{{ project.get_absolute_url }}" aria-label="View details for {{ project.title }}">
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}" loading="lazy">
+    {% else %}
+      <div class="project-card__placeholder">
+        <i class="bi {{ project.icon }}"></i>
+        <span>{{ project.title }}</span>
+      </div>
+    {% endif %}
+    <span class="project-card__overlay"><span>View case study <i class="bi bi-arrow-up-right"></i></span></span>
+    {% if project.is_featured %}<span class="ribbon"><i class="bi bi-star-fill"></i> Featured</span>{% endif %}
+  </a>
+  <div class="project-card__body">
+    {% if project.category %}<span class="project-card__cat">{{ project.category.name }}</span>{% endif %}
+    <h3 class="project-card__title"><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
+    <p class="project-card__text">{{ project.tagline }}</p>
+    {% include "portfolio/components/tech_badges.html" with technologies=project.technologies.all limit=5 %}
+    <div class="project-card__actions">
+      {% if project.github_url %}
+        <a href="{{ project.github_url }}" class="btn btn-ghost btn-sm" target="_blank" rel="noopener"><i class="bi bi-github"></i> Code</a>
+      {% endif %}
+      {% if project.live_url %}
+        <a href="{{ project.live_url }}" class="btn btn-neon btn-sm" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live Demo</a>
+      {% endif %}
+      <a href="{{ project.get_absolute_url }}" class="link-arrow ms-auto">Details <i class="bi bi-arrow-right"></i></a>
+    </div>
+  </div>
+</article>

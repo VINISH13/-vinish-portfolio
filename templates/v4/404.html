@@ -1,0 +1,12 @@
+{% extends "v4/base.html" %}
+{% block title %}Page not found{% endblock %}
+{% block content %}
+<section class="section notfound">
+  <div class="container-x text-center">
+    <p class="notfound__code">404</p>
+    <h1 class="sec-title">Page not found</h1>
+    <p class="sec-sub mx-auto">The page you're looking for doesn't exist or has moved.</p>
+    <a class="btn-pro btn-pro--primary mt-4" href="{% url 'portfolio:home' %}"><i class="bi bi-arrow-left"></i> Back to home</a>
+  </div>
+</section>
+{% endblock %}

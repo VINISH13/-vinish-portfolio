@@ -1,0 +1,49 @@
+<section class="section section--alt" id="skills">
+  <div class="container">
+    {% include "portfolio/components/section_header.html" with eyebrow="Technical skills" title="My" highlight="tech arsenal" subtitle="Tools and technologies I use to design, build and ship production-grade software." %}
+
+    <div class="row g-4">
+      {% for category in skill_categories %}
+        <div class="col-md-6 {% if skill_categories|length|divisibleby:2 and not skill_categories|length|divisibleby:3 %}col-xl-6{% else %}col-xl-4{% endif %} reveal" data-delay="{% widthratio forloop.counter0 1 100 %}">
+          <article class="skill-card glass-card gradient-border h-100 tilt">
+            <header class="skill-card__head">
+              <span class="icon-badge"><i class="bi {{ category.icon }}"></i></span>
+              <div>
+                <h3 class="skill-card__title">{{ category.name }}</h3>
+                {% if category.description %}<p class="skill-card__desc">{{ category.description }}</p>{% endif %}
+              </div>
+            </header>
+            <ul class="skill-list">
+              {% for skill in category.skills.all %}
+                <li class="skill">
+                  <div class="skill__row">
+                    <span class="skill__name">{% if skill.icon_class %}<i class="{{ skill.icon_class }}"></i>{% endif %}{{ skill.name }}</span>
+                    <span class="skill__level">{{ skill.level_label }} · {{ skill.proficiency }}%</span>
+                  </div>
+                  <div class="skill__bar" role="progressbar" aria-label="{{ skill.name }}" aria-valuenow="{{ skill.proficiency }}" aria-valuemin="0" aria-valuemax="100">
+                    <span style="--level: {{ skill.proficiency }}%"></span>
+                  </div>
+                </li>
+              {% empty %}
+                <li class="text-muted-soft small">No skills added yet.</li>
+              {% endfor %}
+            </ul>
+          </article>
+        </div>
+      {% empty %}
+        <p class="text-center text-muted-soft">Add skill categories from the admin panel.</p>
+      {% endfor %}
+    </div>
+
+    {# Infinite tech marquee #}
+    <div class="marquee reveal" aria-hidden="true">
+      <div class="marquee__track">
+        {% for _ in "12" %}
+          {% for category in skill_categories %}{% for skill in category.skills.all %}
+            <span class="marquee__item">{% if skill.icon_class %}<i class="{{ skill.icon_class }}"></i>{% else %}<i class="bi bi-dot"></i>{% endif %}{{ skill.name }}</span>
+          {% endfor %}{% endfor %}
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

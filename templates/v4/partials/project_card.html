@@ -1,0 +1,22 @@
+{# Param: project #}
+<article class="project">
+  <a class="project__media" href="{{ project.get_absolute_url }}" aria-label="Open {{ project.title }}">
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}" loading="lazy">
+    {% else %}
+      <span class="project__icon"><i class="bi {{ project.icon }}"></i></span>
+    {% endif %}
+    {% if project.is_featured %}<span class="project__badge">Featured</span>{% endif %}
+  </a>
+  <div class="project__body">
+    <span class="project__cat">{{ project.category.name|default:"Project" }}</span>
+    <h3 class="project__title"><a href="{{ project.get_absolute_url }}">{{ project.title }}</a></h3>
+    <p class="project__text">{{ project.tagline }}</p>
+    {% include "v4/partials/tags.html" with technologies=project.technologies.all limit=4 %}
+    <div class="project__links">
+      <a href="{{ project.get_absolute_url }}" class="link-arrow">View details <i class="bi bi-arrow-right"></i></a>
+      {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener" aria-label="Source code on GitHub"><i class="bi bi-github"></i></a>{% endif %}
+      {% if project.live_url %}<a href="{{ project.live_url }}" target="_blank" rel="noopener" aria-label="Live demo"><i class="bi bi-box-arrow-up-right"></i></a>{% endif %}
+    </div>
+  </div>
+</article>

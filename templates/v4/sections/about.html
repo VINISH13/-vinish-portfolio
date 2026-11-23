@@ -1,0 +1,27 @@
+{% load portfolio_tags %}
+<section class="section" id="about">
+  <div class="container-x">
+    <div class="about">
+      <div>
+        {% include "v4/partials/section_head.html" with label="About me" title="A little about who I am" %}
+        <div class="about__text reveal">
+          {% for p in profile.about|paragraphs %}
+            <p{% if forloop.first %} class="about__lead"{% endif %}>{{ p }}</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <aside class="card-pro details reveal" data-delay="100">
+        <h3 class="details__title">Quick details</h3>
+        <ul class="details__list">
+          {% if profile.location %}<li><i class="bi bi-geo-alt"></i><div><small>Location</small><span>{{ profile.location }}</span></div></li>{% endif %}
+          <li><i class="bi bi-envelope"></i><div><small>Email</small><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></div></li>
+          {% if profile.phone %}<li><i class="bi bi-telephone"></i><div><small>Phone</small><a href="tel:{{ profile.phone|cut:' ' }}">{{ profile.phone }}</a></div></li>{% endif %}
+          {% with edu=education.0 %}{% if edu %}
+            <li><i class="bi bi-mortarboard"></i><div><small>Education</small><span>{{ edu.degree }}{% if edu.field_of_study %}, {{ edu.field_of_study }}{% endif %}</span></div></li>
+          {% endif %}{% endwith %}
+        </ul>
+      </aside>
+    </div>
+  </div>
+</section>

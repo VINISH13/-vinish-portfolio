@@ -1,0 +1,12 @@
+{% extends "v3/base.html" %}
+{% block title %}Signal lost — 404{% endblock %}
+{% block content %}
+<section class="section notfound">
+  <div class="wrap text-center">
+    <p class="glitch notfound__code" data-text="404">404</p>
+    <h1 class="sec__title">Signal lost.</h1>
+    <p class="dim">The page you're looking for drifted out of range.</p>
+    <a class="btn-neo mt-3" href="{% url 'portfolio:home' %}"><i class="bi bi-house"></i> Return to base</a>
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,8 @@
+{# Params: technologies, limit (0 = all) #}
+{% load portfolio_tags %}
+<ul class="tags" aria-label="Technologies">
+  {% for tech in technologies %}
+    {% if not limit or forloop.counter <= limit %}<li>{{ tech.name }}</li>{% endif %}
+  {% endfor %}
+  {% if limit and technologies|length > limit %}<li>+{{ technologies|length|minus:limit }}</li>{% endif %}
+</ul>

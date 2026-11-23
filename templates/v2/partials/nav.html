@@ -1,0 +1,37 @@
+{% url 'portfolio:home' as home_url %}
+<header class="nav-wrap" id="siteNav">
+  <nav class="nav-pill" aria-label="Main navigation">
+    <a class="nav-brand" href="{{ home_url }}#home" aria-label="Home">
+      {% if profile.profile_image %}
+        <img src="{{ profile.profile_image.url }}" alt="" width="28" height="28">
+      {% else %}
+        <span class="nav-brand__mark">{{ profile.initials|default:"ME" }}</span>
+      {% endif %}
+      <span class="nav-brand__name">{{ profile.first_name|default:"Portfolio" }}</span>
+    </a>
+
+    <ul class="nav-links" id="navLinks">
+      {% for anchor, label in nav_items %}
+        {% if anchor != "home" %}
+          <li><a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}">{{ label }}</a></li>
+        {% endif %}
+      {% endfor %}
+    </ul>
+
+    <div class="nav-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
+        <i class="bi bi-moon-stars icon-dark"></i><i class="bi bi-sun icon-light"></i>
+      </button>
+      <a class="btn-x btn-x--primary btn-x--sm d-none d-md-inline-flex" href="{{ home_url }}#contact">Hire me</a>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navSheet">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="nav-sheet" id="navSheet" hidden>
+    {% for anchor, label in nav_items %}
+      <a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}"><span class="nav-sheet__num">0{{ forloop.counter }}</span>{{ label }}</a>
+    {% endfor %}
+  </div>
+</header>

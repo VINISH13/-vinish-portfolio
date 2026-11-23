@@ -1,0 +1,36 @@
+<section class="section" id="experience">
+  <div class="wrap">
+    {% include "v3/partials/section_head.html" with num="02" label="Experience" title="Mission" highlight="log" %}
+
+    <div class="log" id="missionLog">
+      <span class="log__track" aria-hidden="true"><span class="log__fill" id="logFill"></span></span>
+      {% for exp in experiences %}
+        <article class="log__item reveal" data-delay="{% widthratio forloop.counter0 1 100 %}">
+          <span class="log__node{% if exp.is_current %} is-live{% endif %}" aria-hidden="true"></span>
+          <div class="panel log__card" data-glow>
+            <header class="log__head">
+              <div>
+                <span class="badge-neo badge-neo--{{ exp.employment_type }}">{{ exp.get_employment_type_display }}</span>
+                <h3 class="log__title">{{ exp.title }}</h3>
+                <p class="log__company">
+                  {% if exp.company_url %}<a href="{{ exp.company_url }}" target="_blank" rel="noopener">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}{% if exp.location %}<span class="dim"> · {{ exp.location }}</span>{% endif %}
+                </p>
+              </div>
+              <div class="log__when">
+                <span>{{ exp.start_date|date:"M Y" }} → {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y"|default:"Present" }}{% endif %}</span>
+                <small>{{ exp.duration }}</small>
+              </div>
+            </header>
+            {% if exp.summary %}<p class="dim">{{ exp.summary }}</p>{% endif %}
+            {% if exp.highlights_list %}
+              <ul class="arrows">{% for h in exp.highlights_list %}<li>{{ h }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% include "v3/partials/chips.html" with technologies=exp.technologies.all limit=0 %}
+          </div>
+        </article>
+      {% empty %}
+        <p class="dim">Add experience from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

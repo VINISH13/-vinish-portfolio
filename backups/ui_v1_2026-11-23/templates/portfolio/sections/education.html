@@ -1,0 +1,29 @@
+<section class="section" id="education">
+  <div class="container">
+    {% include "portfolio/components/section_header.html" with eyebrow="Education" title="Academic" highlight="foundation" %}
+
+    <div class="row g-4 justify-content-center">
+      {% for edu in education %}
+        <div class="col-md-6 col-lg-{% if education|length >= 3 %}4{% else %}6{% endif %} reveal" data-delay="{% widthratio forloop.counter0 1 120 %}">
+          <article class="edu-card glass-card gradient-border h-100 tilt">
+            <div class="edu-card__top">
+              <span class="icon-badge icon-badge--lg"><i class="bi bi-mortarboard-fill"></i></span>
+              {% if edu.start_year %}<span class="edu-card__years">{{ edu.start_year }} — {{ edu.end_year|default:"Present" }}</span>{% endif %}
+            </div>
+            <h3 class="edu-card__degree">{{ edu.degree }}</h3>
+            {% if edu.field_of_study %}<p class="edu-card__field">{{ edu.field_of_study }}</p>{% endif %}
+            <p class="edu-card__inst">
+              <i class="bi bi-bank"></i>
+              {% if edu.institution_url %}<a href="{{ edu.institution_url }}" target="_blank" rel="noopener">{{ edu.institution }}</a>{% else %}{{ edu.institution }}{% endif %}
+              {% if edu.location %}<span class="text-muted-soft">· {{ edu.location }}</span>{% endif %}
+            </p>
+            {% if edu.description %}<p class="edu-card__desc">{{ edu.description }}</p>{% endif %}
+            {% if edu.grade %}<span class="grade-chip"><i class="bi bi-award-fill"></i> {{ edu.grade }}</span>{% endif %}
+          </article>
+        </div>
+      {% empty %}
+        <p class="text-center text-muted-soft">Add education entries from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

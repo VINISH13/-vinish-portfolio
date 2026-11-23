@@ -1,0 +1,11 @@
+{% url 'portfolio:home' as home_url %}
+<footer class="hud-footer">
+  <div class="wrap">
+    <p class="hud-footer__big" aria-hidden="true">{{ profile.first_name|default:"PORTFOLIO"|upper }}</p>
+    <div class="hud-footer__row">
+      <span class="mono-dim">&copy; {{ current_year }} {{ profile.full_name|default:"" }} · Built with Python &amp; Django</span>
+      {% include "v3/partials/socials.html" %}
+      <a class="mono-link" href="{{ home_url }}#home">Back to top <i class="bi bi-arrow-up"></i></a>
+    </div>
+  </div>
+</footer>

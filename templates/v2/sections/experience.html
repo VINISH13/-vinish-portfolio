@@ -1,0 +1,31 @@
+<section class="section" id="experience">
+  <div class="wrap">
+    {% include "v2/partials/section_head.html" with num="02" label="Experience" title="Where I've" highlight="worked" %}
+
+    <ol class="exp-list">
+      {% for exp in experiences %}
+        <li class="exp card reveal" data-delay="{% widthratio forloop.counter0 1 80 %}" data-spotlight>
+          <div class="exp__meta">
+            <span class="exp__date">{{ exp.start_date|date:"M Y" }} — {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y"|default:"Present" }}{% endif %}</span>
+            <span class="exp__dur">{{ exp.duration }}</span>
+            <span class="tag tag--{{ exp.employment_type }}">{% if exp.is_current %}<span class="tag__dot"></span>{% endif %}{{ exp.get_employment_type_display }}</span>
+          </div>
+          <div class="exp__body">
+            <h3 class="exp__title">{{ exp.title }}</h3>
+            <p class="exp__company">
+              {% if exp.company_url %}<a href="{{ exp.company_url }}" target="_blank" rel="noopener">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}
+              {% if exp.location %}<span class="muted"> · {{ exp.location }}</span>{% endif %}
+            </p>
+            {% if exp.summary %}<p class="muted">{{ exp.summary }}</p>{% endif %}
+            {% if exp.highlights_list %}
+              <ul class="ticks">{% for h in exp.highlights_list %}<li>{{ h }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% include "v2/partials/chips.html" with technologies=exp.technologies.all limit=0 %}
+          </div>
+        </li>
+      {% empty %}
+        <li class="muted">Add experience from the admin panel.</li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

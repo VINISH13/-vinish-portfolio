@@ -1,0 +1,26 @@
+<section class="section section--alt" id="education">
+  <div class="container-x">
+    {% include "v4/partials/section_head.html" with label="Education" title="Academic background" %}
+
+    <div class="edu-list">
+      {% for edu in education %}
+        <article class="card-pro edu reveal">
+          <span class="edu__icon"><i class="bi bi-mortarboard"></i></span>
+          <div class="edu__main">
+            <h3 class="edu__degree">{{ edu.degree }}{% if edu.field_of_study %} <span class="edu__field">· {{ edu.field_of_study }}</span>{% endif %}</h3>
+            <p class="edu__inst">
+              {% if edu.institution_url %}<a href="{{ edu.institution_url }}" target="_blank" rel="noopener">{{ edu.institution }}</a>{% else %}{{ edu.institution }}{% endif %}{% if edu.location %}<span class="muted"> · {{ edu.location }}</span>{% endif %}
+            </p>
+            {% if edu.description %}<p class="muted mb-0 mt-2">{{ edu.description }}</p>{% endif %}
+          </div>
+          <div class="edu__meta">
+            {% if edu.start_year %}<span class="edu__years">{{ edu.start_year }} – {{ edu.end_year|default:"Present" }}</span>{% endif %}
+            {% if edu.grade %}<span class="edu__grade">{{ edu.grade }}</span>{% endif %}
+          </div>
+        </article>
+      {% empty %}
+        <p class="muted">Add education from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

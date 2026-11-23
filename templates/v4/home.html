@@ -1,0 +1,26 @@
+{% extends "v4/base.html" %}
+
+{% block content %}
+  {% if not profile %}
+    <section class="section">
+      <div class="container-x">
+        <div class="card-pro text-center p-5">
+          <h1 class="h3">Your portfolio is almost ready</h1>
+          <p class="muted">Create your profile in the admin panel, or run <code>python manage.py seed_portfolio</code>.</p>
+          <a class="btn-pro btn-pro--primary" href="{% url 'admin:index' %}">Open admin panel</a>
+        </div>
+      </div>
+    </section>
+  {% else %}
+    {% include "v4/sections/hero.html" %}
+    {% include "v4/sections/about.html" %}
+    {% include "v4/sections/experience.html" %}
+    {% include "v4/sections/projects.html" %}
+    {% include "v4/sections/education.html" %}
+    {% include "v4/sections/contact.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block extra_js %}
+  {% if profile %}{{ profile.roles_list|json_script:"typing-roles" }}{% endif %}
+{% endblock %}

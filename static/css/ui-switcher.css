@@ -1,0 +1,17 @@
+/* Development-only design switcher, shared by both designs. */
+.ui-switcher {
+  position: fixed; left: 16px; bottom: 16px; z-index: 1500;
+  display: inline-flex; align-items: center; gap: 4px; padding: 4px;
+  border-radius: 999px; font: 600 12px/1 system-ui, sans-serif;
+  background: rgba(17, 17, 20, .92); border: 1px solid rgba(255, 255, 255, .14);
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, .6);
+}
+.ui-switcher__label { color: #a1a1aa; padding: 0 8px 0 10px; text-transform: uppercase; letter-spacing: .08em; font-size: 10px; }
+.ui-switcher a { color: #e4e4e7; text-decoration: none; padding: 7px 12px; border-radius: 999px; transition: background .2s; }
+.ui-switcher a:hover { background: rgba(255, 255, 255, .08); color: #fff; }
+.ui-switcher a.is-active { background: linear-gradient(135deg, #3b82f6, #8b5cf6); color: #fff; }
+@media (max-width: 575.98px) {
+  .ui-switcher { left: 8px; right: 8px; bottom: 8px; justify-content: space-between; gap: 0; }
+  .ui-switcher__label { display: none; }
+  .ui-switcher a { padding: 7px 9px; font-size: 11px; }
+}

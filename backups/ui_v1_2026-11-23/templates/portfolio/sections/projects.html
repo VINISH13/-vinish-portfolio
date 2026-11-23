@@ -1,0 +1,35 @@
+<section class="section section--alt" id="projects">
+  <div class="container">
+    {% include "portfolio/components/section_header.html" with eyebrow="Featured projects" title="Things I've" highlight="built" subtitle="A selection of products, tools and experiments — from idea to deployment." %}
+
+    {% if project_categories %}
+      <div class="filter-bar reveal" role="tablist" aria-label="Filter projects by category">
+        <button class="filter-btn is-active" type="button" data-filter="all" role="tab" aria-selected="true">
+          All <span class="filter-count">{{ projects|length }}</span>
+        </button>
+        {% for cat in project_categories %}
+          <button class="filter-btn" type="button" data-filter="{{ cat.slug }}" role="tab" aria-selected="false">
+            {{ cat.name }} <span class="filter-count">{{ cat.n }}</span>
+          </button>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="row g-4 project-grid" id="projectGrid">
+      {% for project in projects %}
+        <div class="col-md-6 col-lg-4 project-item reveal" data-category="{{ project.category.slug|default:'uncategorized' }}" data-delay="{% cycle '0' '100' '200' %}">
+          {% include "portfolio/components/project_card.html" %}
+        </div>
+      {% empty %}
+        <p class="text-center text-muted-soft">Projects added in the admin panel will appear here.</p>
+      {% endfor %}
+    </div>
+    <p class="filter-empty text-center text-muted-soft d-none" id="filterEmpty">No projects in this category yet.</p>
+
+    {% if profile.github_url %}
+      <div class="text-center mt-4 reveal">
+        <a href="{{ profile.github_url }}" class="btn btn-ghost" target="_blank" rel="noopener"><i class="bi bi-github"></i> See more on GitHub</a>
+      </div>
+    {% endif %}
+  </div>
+</section>

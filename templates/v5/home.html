@@ -1,0 +1,28 @@
+{% extends "v5/base.html" %}
+
+{% block content %}
+  {% if not profile %}
+    <section class="section">
+      <div class="wrap text-center">
+        <h1 class="h3">Your portfolio is almost ready</h1>
+        <p class="muted">Create your profile in the admin panel, or run <code>python manage.py seed_portfolio</code>.</p>
+        <a class="btn-solid" href="{% url 'admin:index' %}">Open admin panel</a>
+      </div>
+    </section>
+  {% else %}
+    {% include "v5/sections/hero.html" %}
+    {% include "v5/sections/about.html" %}
+    {% include "v5/sections/experience.html" %}
+    {% include "v5/sections/projects.html" %}
+    {% include "v5/sections/education.html" %}
+    {% include "v5/sections/contact.html" %}
+  {% endif %}
+{% endblock %}
+
+{% block three %}
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+{% endblock %}
+
+{% block extra_js %}
+  {% if profile %}{{ profile.roles_list|json_script:"typing-roles" }}{% endif %}
+{% endblock %}

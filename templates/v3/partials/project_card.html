@@ -1,0 +1,25 @@
+{# Param: project, index (optional). Self-contained card: title + full description, no detail page. #}
+<article class="holo-card tilt" data-glow>
+  <div class="holo-card__media">
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}" loading="lazy">
+    {% else %}
+      <span class="holo-card__art" aria-hidden="true"><span class="holo-card__ring"></span></span>
+      <i class="bi {{ project.icon }} holo-card__icon" aria-hidden="true"></i>
+    {% endif %}
+    <span class="holo-card__id">P-{{ index|default:"01" }}</span>
+    {% if project.is_featured %}<span class="holo-card__flag"><i class="bi bi-star-fill"></i> Featured</span>{% endif %}
+  </div>
+  <div class="holo-card__body">
+    <span class="holo-card__cat">{{ project.category.name|default:"Project" }}</span>
+    <h3 class="holo-card__title">{{ project.title }}</h3>
+    <p class="holo-card__text">{{ project.description }}</p>
+    {% include "v3/partials/chips.html" with technologies=project.technologies.all limit=0 %}
+    {% if project.github_url or project.live_url %}
+      <div class="holo-card__links">
+        {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener"><i class="bi bi-github"></i> Code</a>{% endif %}
+        {% if project.live_url %}<a href="{{ project.live_url }}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live</a>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</article>

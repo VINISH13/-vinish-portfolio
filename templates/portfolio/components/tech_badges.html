@@ -1,0 +1,12 @@
+{# Reusable technology badge list. Params: technologies (iterable), limit (optional) #}
+{% load portfolio_tags %}
+<ul class="tech-badges" aria-label="Technologies">
+  {% for tech in technologies %}
+    {% if not limit or forloop.counter <= limit %}
+      <li class="tech-badge">{% if tech.icon_class %}<i class="{{ tech.icon_class }}"></i>{% endif %}{{ tech.name }}</li>
+    {% endif %}
+  {% endfor %}
+  {% if limit and technologies|length > limit %}
+    <li class="tech-badge tech-badge--more">+{{ technologies|length|minus:limit }}</li>
+  {% endif %}
+</ul>

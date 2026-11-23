@@ -1,0 +1,84 @@
+<section class="hero" id="home">
+  <div class="hero__floor" aria-hidden="true"><div class="hero__grid"></div></div>
+  <div class="hero__horizon" aria-hidden="true"></div>
+
+  <div class="wrap hero__wrap">
+    <div class="hero__text">
+      <p class="hud-label reveal"><span class="hud-label__tick"></span>Portfolio // {{ current_year }}</p>
+
+      {% if profile.available_for_work %}
+        <p class="status reveal" data-delay="80"><span class="status__dot"></span>Online · open to opportunities</p>
+      {% endif %}
+
+      <h1 class="hero__name reveal" data-delay="160">
+        <span class="hero__hello">Hello, I'm</span>
+        <span class="glitch" data-text="{{ profile.full_name|upper }}">{{ profile.full_name|upper }}</span>
+      </h1>
+
+      <p class="hero__role reveal" data-delay="240" aria-live="polite">
+        <span class="hero__prompt">&gt;</span>
+        <span id="typedText">{{ profile.roles_list.0 }}</span><span class="hero__caret" aria-hidden="true">_</span>
+      </p>
+
+      <p class="hero__intro reveal" data-delay="320">{{ profile.hero_intro }}</p>
+
+      <div class="hero__actions reveal" data-delay="400">
+        <a href="#contact" class="btn-neo magnetic"><i class="bi bi-broadcast"></i> Contact me</a>
+        {% if profile.resume %}
+          <a href="{{ profile.resume.url }}" class="btn-ghost-neo magnetic" download><i class="bi bi-download"></i> Resume</a>
+        {% else %}
+          <a href="#projects" class="btn-ghost-neo magnetic"><i class="bi bi-grid-3x3-gap"></i> View projects</a>
+        {% endif %}
+        {% include "v3/partials/socials.html" %}
+      </div>
+    </div>
+
+    <div class="hero__visual reveal" data-delay="200">
+      <div class="reactor">
+        <svg class="reactor__rings" viewBox="0 0 400 400" aria-hidden="true">
+          <defs>
+            <linearGradient id="ringGrad" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0" stop-color="#22d3ee"/><stop offset="1" stop-color="#a855f7"/>
+            </linearGradient>
+          </defs>
+          <circle class="ring ring--outer" cx="200" cy="200" r="194" />
+          <circle class="ring ring--ticks" cx="200" cy="200" r="182" />
+          <circle class="ring ring--arc" cx="200" cy="200" r="170" />
+          <circle class="ring ring--inner" cx="200" cy="200" r="158" />
+        </svg>
+        <div class="reactor__core">
+          {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" alt="Portrait of {{ profile.full_name }}" width="800" height="800">
+          {% else %}
+            <span class="reactor__name">{{ profile.first_name }}</span>
+          {% endif %}
+          <span class="reactor__scan" aria-hidden="true"></span>
+        </div>
+
+        <span class="hud-tag hud-tag--1"><i class="devicon-python-plain colored"></i> Python</span>
+        <span class="hud-tag hud-tag--2"><i class="devicon-django-plain"></i> Django</span>
+        {% if profile.location %}<span class="hud-tag hud-tag--3"><i class="bi bi-geo-alt"></i> {{ profile.location }}</span>{% endif %}
+        <span class="hud-tag hud-tag--4"><i class="bi bi-cpu"></i> REST APIs</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap">
+    {% with current=experiences.0 %}
+    <div class="readout reveal" data-delay="500">
+      <div class="readout__cell">
+        <span class="readout__label">Experience</span>
+        <span class="readout__value"><span data-count="{{ profile.years_experience }}">0</span>+ <small>yrs</small></span>
+      </div>
+      <div class="readout__cell">
+        <span class="readout__label">Projects worked</span>
+        <span class="readout__value"><span data-count="{{ profile.projects_completed }}">0</span>+</span>
+      </div>
+      <div class="readout__cell readout__cell--wide">
+        <span class="readout__label">{% if current.is_current %}Current role{% else %}Focus{% endif %}</span>
+        <span class="readout__text">{% if current %}{{ current.title }} <span class="dim">@ {{ current.company }}</span>{% else %}{{ profile.headline }}{% endif %}</span>
+      </div>
+    </div>
+    {% endwith %}
+  </div>
+</section>

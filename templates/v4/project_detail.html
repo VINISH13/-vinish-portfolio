@@ -1,0 +1,61 @@
+{% extends "v4/base.html" %}
+{% load portfolio_tags %}
+
+{% block title %}{{ project.title }} — {{ profile.full_name|default:"Portfolio" }}{% endblock %}
+{% block meta_description %}{{ project.tagline }}{% endblock %}
+
+{% block content %}
+<section class="section detail">
+  <div class="container-x">
+    <a class="link-back reveal" href="{% url 'portfolio:home' %}#projects"><i class="bi bi-arrow-left"></i> Back to projects</a>
+
+    <header class="detail__head reveal">
+      <span class="eyebrow">{{ project.category.name|default:"Project" }}</span>
+      <h1 class="detail__title">{{ project.title }}</h1>
+      <p class="sec-sub">{{ project.tagline }}</p>
+      {% if project.live_url or project.github_url %}
+        <div class="hero__actions mt-4">
+          {% if project.live_url %}<a href="{{ project.live_url }}" class="btn-pro btn-pro--primary" target="_blank" rel="noopener">Live demo <i class="bi bi-box-arrow-up-right"></i></a>{% endif %}
+          {% if project.github_url %}<a href="{{ project.github_url }}" class="btn-pro btn-pro--outline" target="_blank" rel="noopener"><i class="bi bi-github"></i> Source code</a>{% endif %}
+        </div>
+      {% endif %}
+    </header>
+
+    <div class="detail__media reveal">
+      {% if project.image %}
+        <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}">
+      {% else %}
+        <span class="project__icon project__icon--lg"><i class="bi {{ project.icon }}"></i></span>
+      {% endif %}
+    </div>
+
+    <div class="detail__grid">
+      <article class="card-pro detail__body reveal">
+        <h2 class="detail__h">Overview</h2>
+        {% for p in project.description|paragraphs %}<p>{{ p }}</p>{% endfor %}
+        {% if project.features_list %}
+          <h3 class="detail__h mt-4">Key features</h3>
+          <ul class="bullets">{% for f in project.features_list %}<li>{{ f }}</li>{% endfor %}</ul>
+        {% endif %}
+      </article>
+      <aside class="card-pro detail__info reveal" data-delay="80">
+        <h2 class="detail__h">Project info</h2>
+        <dl>
+          {% if project.category %}<dt>Category</dt><dd>{{ project.category.name }}</dd>{% endif %}
+          {% if project.completed_on %}<dt>Completed</dt><dd>{{ project.completed_on|date:"F Y" }}</dd>{% endif %}
+          <dt>Technologies</dt><dd>{% include "v4/partials/tags.html" with technologies=project.technologies.all limit=0 %}</dd>
+        </dl>
+      </aside>
+    </div>
+
+    {% if related_projects %}
+      <h2 class="detail__more">More projects</h2>
+      <div class="projects">
+        {% for project in related_projects %}
+          <div class="reveal" data-delay="{% cycle '0' '80' '160' %}">{% include "v4/partials/project_card.html" %}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+<section class="hero" id="home">
+  <div class="container-x hero__grid">
+    <div class="hero__copy">
+      {% if profile.available_for_work %}
+        <span class="pill reveal"><span class="pill__dot"></span>Open to new opportunities</span>
+      {% endif %}
+
+      <h1 class="hero__title reveal" data-delay="60">Hi, I'm <span class="accent">{{ profile.full_name }}</span></h1>
+
+      <p class="hero__role reveal" data-delay="120" aria-live="polite">
+        <span id="typedText">{{ profile.roles_list.0 }}</span><span class="hero__caret" aria-hidden="true"></span>
+      </p>
+
+      <p class="hero__intro reveal" data-delay="180">{{ profile.hero_intro }}</p>
+
+      <div class="hero__actions reveal" data-delay="240">
+        <a href="#contact" class="btn-pro btn-pro--primary">Contact me <i class="bi bi-arrow-right"></i></a>
+        {% if profile.resume %}
+          <a href="{{ profile.resume.url }}" class="btn-pro btn-pro--outline" download><i class="bi bi-download"></i> Download resume</a>
+        {% else %}
+          <a href="#projects" class="btn-pro btn-pro--outline">View projects</a>
+        {% endif %}
+      </div>
+
+      <div class="hero__social reveal" data-delay="300">
+        <span class="hero__social-label">Find me on</span>
+        {% include "v4/partials/socials.html" %}
+      </div>
+    </div>
+
+    <div class="hero__media reveal" data-delay="120">
+      <div class="portrait">
+        {% if profile.profile_image %}
+          <img src="{{ profile.profile_image.url }}" alt="Portrait of {{ profile.full_name }}" width="800" height="800">
+        {% else %}
+          <span class="portrait__initials">{{ profile.initials }}</span>
+        {% endif %}
+      </div>
+      {% with current=experiences.0 %}{% if current %}
+        <div class="float-card float-card--role">
+          <span class="float-card__icon"><i class="bi bi-briefcase"></i></span>
+          <div><small>{% if current.is_current %}Currently at{% else %}Previously at{% endif %}</small><strong>{{ current.company }}</strong></div>
+        </div>
+      {% endif %}{% endwith %}
+      {% if profile.location %}
+        <div class="float-card float-card--loc">
+          <span class="float-card__icon"><i class="bi bi-geo-alt"></i></span>
+          <div><small>Based in</small><strong>{{ profile.location }}</strong></div>
+        </div>
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="container-x">
+    <dl class="stats reveal" data-delay="200">
+      <div class="stat"><dt><span data-count="{{ profile.years_experience }}">0</span>+</dt><dd>Years of experience</dd></div>
+      <div class="stat"><dt><span data-count="{{ profile.projects_completed }}">0</span>+</dt><dd>Projects worked on</dd></div>
+      {% with edu=education.0 %}{% if edu %}
+        <div class="stat stat--text"><dt>{% if edu.grade %}{{ edu.grade }}{% else %}{{ edu.degree }}{% endif %}</dt><dd>{{ edu.field_of_study|default:edu.degree }}</dd></div>
+      {% endif %}{% endwith %}
+      <div class="stat stat--text"><dt>Python · Django</dt><dd>Core stack</dd></div>
+    </dl>
+  </div>
+</section>

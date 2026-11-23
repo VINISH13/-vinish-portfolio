@@ -1,0 +1,63 @@
+{% extends "v3/base.html" %}
+{% load portfolio_tags %}
+
+{% block title %}{{ project.title }} — {{ profile.full_name|default:"Portfolio" }}{% endblock %}
+{% block meta_description %}{{ project.tagline }}{% endblock %}
+
+{% block content %}
+<section class="section detail">
+  <div class="wrap">
+    <a class="mono-link reveal" href="{% url 'portfolio:home' %}#projects"><i class="bi bi-arrow-left"></i> All projects</a>
+
+    <header class="detail__head reveal">
+      <span class="sec__kicker" data-scramble>// {{ project.category.name|default:"Project"|upper }}{% if project.is_featured %} · FEATURED{% endif %}</span>
+      <h1 class="detail__title">{{ project.title }}</h1>
+      <p class="detail__tagline">{{ project.tagline }}</p>
+      {% include "v3/partials/chips.html" with technologies=project.technologies.all limit=0 %}
+      {% if project.live_url or project.github_url %}
+        <div class="hero__actions mt-4">
+          {% if project.live_url %}<a href="{{ project.live_url }}" class="btn-neo" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live demo</a>{% endif %}
+          {% if project.github_url %}<a href="{{ project.github_url }}" class="btn-ghost-neo" target="_blank" rel="noopener"><i class="bi bi-github"></i> Source</a>{% endif %}
+        </div>
+      {% endif %}
+    </header>
+
+    <div class="panel detail__media reveal">
+      {% if project.image %}
+        <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}">
+      {% else %}
+        <span class="holo-card__art" aria-hidden="true"><span class="holo-card__ring"></span></span>
+        <i class="bi {{ project.icon }} holo-card__icon" aria-hidden="true"></i>
+      {% endif %}
+    </div>
+
+    <div class="detail__grid">
+      <article class="panel detail__body reveal">
+        <p class="panel__title"><i class="bi bi-file-earmark-text"></i> overview</p>
+        {% for p in project.description|paragraphs %}<p>{{ p }}</p>{% endfor %}
+        {% if project.features_list %}
+          <p class="panel__title mt-4"><i class="bi bi-list-check"></i> key_features</p>
+          <ul class="arrows">{% for f in project.features_list %}<li>{{ f }}</li>{% endfor %}</ul>
+        {% endif %}
+      </article>
+      <aside class="panel detail__info reveal" data-delay="100">
+        <p class="panel__title"><i class="bi bi-info-square"></i> meta</p>
+        <dl class="kv kv--stack">
+          {% if project.category %}<div><dt>category</dt><dd>{{ project.category.name }}</dd></div>{% endif %}
+          {% if project.completed_on %}<div><dt>completed</dt><dd>{{ project.completed_on|date:"F Y" }}</dd></div>{% endif %}
+          <div><dt>stack</dt><dd>{{ project.technologies.all|join:", "|default:"—" }}</dd></div>
+        </dl>
+      </aside>
+    </div>
+
+    {% if related_projects %}
+      <h2 class="detail__more">More projects</h2>
+      <div class="proj-grid">
+        {% for project in related_projects %}
+          <div class="reveal" data-delay="{% cycle '0' '100' '200' %}">{% include "v3/partials/project_card.html" with index=forloop.counter|stringformat:"02d" %}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}

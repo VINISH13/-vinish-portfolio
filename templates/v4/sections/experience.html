@@ -1,0 +1,33 @@
+<section class="section section--alt" id="experience">
+  <div class="container-x">
+    {% include "v4/partials/section_head.html" with label="Experience" title="Where I've worked" %}
+
+    <ol class="timeline">
+      {% for exp in experiences %}
+        <li class="timeline__item reveal" data-delay="{% widthratio forloop.counter0 1 80 %}">
+          <div class="timeline__when">
+            <span class="timeline__dates">{{ exp.start_date|date:"M Y" }} – {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y"|default:"Present" }}{% endif %}</span>
+            <span class="timeline__dur">{{ exp.duration }}</span>
+          </div>
+          <span class="timeline__dot{% if exp.is_current %} is-current{% endif %}" aria-hidden="true"></span>
+          <div class="card-pro timeline__card">
+            <div class="timeline__head">
+              <h3 class="timeline__role">{{ exp.title }}</h3>
+              <span class="type type--{{ exp.employment_type }}">{{ exp.get_employment_type_display }}</span>
+            </div>
+            <p class="timeline__company">
+              {% if exp.company_url %}<a href="{{ exp.company_url }}" target="_blank" rel="noopener">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}{% if exp.location %}<span class="muted"> · {{ exp.location }}</span>{% endif %}
+            </p>
+            {% if exp.summary %}<p class="muted">{{ exp.summary }}</p>{% endif %}
+            {% if exp.highlights_list %}
+              <ul class="bullets">{% for h in exp.highlights_list %}<li>{{ h }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% include "v4/partials/tags.html" with technologies=exp.technologies.all limit=0 %}
+          </div>
+        </li>
+      {% empty %}
+        <li class="muted">Add experience from the admin panel.</li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>

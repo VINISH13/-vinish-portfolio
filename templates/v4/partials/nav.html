@@ -1,0 +1,32 @@
+{% url 'portfolio:home' as home_url %}
+<header class="topbar" id="siteNav">
+  <div class="container-x topbar__inner">
+    <a class="brand" href="{{ home_url }}#home">{{ profile.first_name|default:"Portfolio" }}<span class="brand__dot">.</span></a>
+
+    <nav class="topbar__nav" aria-label="Main navigation">
+      {% for anchor, label in nav_items %}
+        {% if anchor != "home" %}<a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}">{{ label }}</a>{% endif %}
+      {% endfor %}
+    </nav>
+
+    <div class="topbar__actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="Toggle dark / light mode">
+        <i class="bi bi-moon icon-dark"></i><i class="bi bi-sun icon-light"></i>
+      </button>
+      {% if profile.resume %}
+        <a class="btn-pro btn-pro--primary btn-pro--sm d-none d-md-inline-flex" href="{{ profile.resume.url }}" download><i class="bi bi-download"></i> Resume</a>
+      {% else %}
+        <a class="btn-pro btn-pro--primary btn-pro--sm d-none d-md-inline-flex" href="{{ home_url }}#contact">Get in touch</a>
+      {% endif %}
+      <button class="icon-btn topbar__toggle" id="navToggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+        <i class="bi bi-list"></i>
+      </button>
+    </div>
+  </div>
+
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Mobile navigation" hidden>
+    {% for anchor, label in nav_items %}
+      <a href="{{ home_url }}#{{ anchor }}" data-section="{{ anchor }}">{{ label }}</a>
+    {% endfor %}
+  </nav>
+</header>

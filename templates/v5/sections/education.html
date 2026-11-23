@@ -1,0 +1,25 @@
+<section class="section" id="education">
+  <div class="wrap">
+    {% include "v5/partials/section_head.html" with num="04" label="Education" title="Where I studied" %}
+
+    <div class="rows">
+      {% for edu in education %}
+        <article class="row-item reveal">
+          <div class="row-item__when">
+            {% if edu.start_year %}<span>{{ edu.start_year }} — {{ edu.end_year|default:"Present" }}</span>{% endif %}
+            {% if edu.grade %}<small>{{ edu.grade }}</small>{% endif %}
+          </div>
+          <div class="row-item__main">
+            <h3 class="row-item__title">{{ edu.degree }}{% if edu.field_of_study %}, {{ edu.field_of_study }}{% endif %}</h3>
+            <p class="row-item__sub">
+              {% if edu.institution_url %}<a href="{{ edu.institution_url }}" target="_blank" rel="noopener">{{ edu.institution }}</a>{% else %}{{ edu.institution }}{% endif %}{% if edu.location %}<span class="sep">·</span>{{ edu.location }}{% endif %}
+            </p>
+            {% if edu.description %}<p class="muted mb-0">{{ edu.description }}</p>{% endif %}
+          </div>
+        </article>
+      {% empty %}
+        <p class="muted">Add education from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

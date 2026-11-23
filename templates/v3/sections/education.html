@@ -1,0 +1,33 @@
+<section class="section" id="education">
+  <div class="wrap">
+    {% include "v3/partials/section_head.html" with num="04" label="Education" title="Academic" highlight="core" %}
+
+    {% for edu in education %}
+      <article class="panel edu reveal" data-glow>
+        <div class="edu__main">
+          <span class="edu__icon"><i class="bi bi-mortarboard"></i></span>
+          <div>
+            <h3 class="edu__degree">{{ edu.degree }}</h3>
+            {% if edu.field_of_study %}<p class="edu__field">{{ edu.field_of_study }}</p>{% endif %}
+            <p class="edu__inst">
+              {% if edu.institution_url %}<a href="{{ edu.institution_url }}" target="_blank" rel="noopener">{{ edu.institution }}</a>{% else %}{{ edu.institution }}{% endif %}{% if edu.location %}<span class="dim"> · {{ edu.location }}</span>{% endif %}
+            </p>
+            {% if edu.start_year %}<span class="edu__years">{{ edu.start_year }} → {{ edu.end_year|default:"Present" }}</span>{% endif %}
+            {% if edu.description %}<p class="dim mt-3 mb-0">{{ edu.description }}</p>{% endif %}
+          </div>
+        </div>
+        {% if edu.grade %}
+          <div class="gauge" data-grade="{{ edu.grade }}">
+            <svg viewBox="0 0 120 120" aria-hidden="true">
+              <circle class="gauge__bg" cx="60" cy="60" r="52" />
+              <circle class="gauge__fill" cx="60" cy="60" r="52" />
+            </svg>
+            <div class="gauge__label"><span class="gauge__value">{{ edu.grade }}</span></div>
+          </div>
+        {% endif %}
+      </article>
+    {% empty %}
+      <p class="dim">Add education from the admin panel.</p>
+    {% endfor %}
+  </div>
+</section>

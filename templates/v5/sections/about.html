@@ -1,0 +1,36 @@
+{% load portfolio_tags %}
+<section class="section" id="about">
+  <div class="wrap">
+    {% include "v5/partials/section_head.html" with num="01" label="About" title="Who I am" %}
+
+    {% with paras=profile.about|paragraphs %}
+      <p class="statement" data-words>{{ paras.0 }}</p>
+
+      <div class="about">
+        <figure class="portrait reveal">
+          {% if profile.profile_image %}
+            <img src="{{ profile.profile_image.url }}" alt="Portrait of {{ profile.full_name }}" loading="lazy">
+          {% else %}
+            <span class="portrait__initials">{{ profile.initials }}</span>
+          {% endif %}
+        </figure>
+
+        <div class="about__side">
+          {% for p in paras %}{% if not forloop.first %}<p class="about__text reveal">{{ p }}</p>{% endif %}{% endfor %}
+
+          <dl class="figures reveal" data-delay="100">
+            <div><dt><span data-count="{{ profile.years_experience }}">0</span>+</dt><dd>Years of experience</dd></div>
+            <div><dt><span data-count="{{ profile.projects_completed }}">0</span>+</dt><dd>Projects worked on</dd></div>
+            {% with edu=education.0 %}{% if edu.grade %}<div><dt>{{ edu.grade|cut:"CGPA"|cut:" " }}</dt><dd>{% if "CGPA" in edu.grade %}CGPA · {% endif %}{{ edu.field_of_study|default:edu.degree }}</dd></div>{% endif %}{% endwith %}
+          </dl>
+
+          <ul class="facts reveal" data-delay="150">
+            {% if profile.location %}<li><span>Location</span>{{ profile.location }}</li>{% endif %}
+            <li><span>Email</span><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></li>
+            {% if profile.phone %}<li><span>Phone</span><a href="tel:{{ profile.phone|cut:' ' }}">{{ profile.phone }}</a></li>{% endif %}
+          </ul>
+        </div>
+      </div>
+    {% endwith %}
+  </div>
+</section>

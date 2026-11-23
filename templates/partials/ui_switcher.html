@@ -1,0 +1,9 @@
+{# Development-only design switcher (shown when DEBUG=True). #}
+<nav class="ui-switcher" aria-label="Switch design">
+  <span class="ui-switcher__label">Design</span>
+  <a href="?ui=v1" class="{% if ui == 'v1' %}is-active{% endif %}">Neon</a>
+  <a href="?ui=v2" class="{% if ui == 'v2' %}is-active{% endif %}">Modern</a>
+  <a href="?ui=v3" class="{% if ui == 'v3' %}is-active{% endif %}">Futuristic</a>
+  <a href="?ui=v4" class="{% if ui == 'v4' %}is-active{% endif %}">Professional</a>
+  <a href="?ui=v5" class="{% if ui == 'v5' %}is-active{% endif %}">Minimal 3D</a>
+</nav>

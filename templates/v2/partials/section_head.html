@@ -1,0 +1,6 @@
+{# Params: num, label, title, highlight, subtitle #}
+<header class="sec-head reveal">
+  <span class="sec-kicker"><span class="sec-kicker__num">{{ num }}</span>{{ label }}</span>
+  <h2 class="sec-title">{{ title }} <span class="grad">{{ highlight }}</span></h2>
+  {% if subtitle %}<p class="sec-sub">{{ subtitle }}</p>{% endif %}
+</header>

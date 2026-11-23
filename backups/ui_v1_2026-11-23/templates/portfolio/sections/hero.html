@@ -1,0 +1,79 @@
+<section class="hero" id="home">
+  <div class="container">
+    <div class="row align-items-center gy-5">
+      <div class="col-lg-7 order-2 order-lg-1">
+        {% if profile.available_for_work %}
+          <span class="status-pill reveal"><span class="status-pill__dot"></span>Available for new opportunities</span>
+        {% endif %}
+
+        <h1 class="hero__title reveal" data-delay="100">
+          <span class="hero__hello">Hi there <span class="wave">👋</span> I'm</span>
+          <span class="hero__name text-gradient">{{ profile.full_name }}</span>
+        </h1>
+
+        <p class="hero__typing reveal" data-delay="200">
+          <span class="hero__prompt">&gt;</span>
+          <span class="typed-text" id="typedText" aria-live="polite">{{ profile.roles_list.0 }}</span><span class="typed-cursor" aria-hidden="true"></span>
+        </p>
+
+        <p class="hero__intro reveal" data-delay="300">{{ profile.hero_intro }}</p>
+
+        <div class="hero__actions reveal" data-delay="400">
+          <a href="#contact" class="btn btn-neon btn-lg"><i class="bi bi-send-fill"></i> Contact Me</a>
+          {% if profile.resume %}
+            <a href="{{ profile.resume.url }}" class="btn btn-ghost btn-lg" download><i class="bi bi-download"></i> Download Resume</a>
+          {% else %}
+            <a href="#projects" class="btn btn-ghost btn-lg"><i class="bi bi-grid-1x2"></i> View Projects</a>
+          {% endif %}
+          {% if profile.github_url %}
+            <a href="{{ profile.github_url }}" class="btn-icon" target="_blank" rel="noopener" aria-label="GitHub" data-tip="GitHub"><i class="bi bi-github"></i></a>
+          {% endif %}
+          {% if profile.linkedin_url %}
+            <a href="{{ profile.linkedin_url }}" class="btn-icon" target="_blank" rel="noopener" aria-label="LinkedIn" data-tip="LinkedIn"><i class="bi bi-linkedin"></i></a>
+          {% endif %}
+        </div>
+
+        <dl class="hero__stats reveal" data-delay="500">
+          <div class="stat">
+            <dt class="stat__value"><span data-count="{{ profile.years_experience }}">0</span>+</dt>
+            <dd class="stat__label">Years experience</dd>
+          </div>
+          <div class="stat">
+            <dt class="stat__value"><span data-count="{{ profile.projects_completed }}">0</span>+</dt>
+            <dd class="stat__label">Projects worked</dd>
+          </div>
+        </dl>
+      </div>
+
+      <div class="col-lg-5 order-1 order-lg-2">
+        <div class="hero__visual reveal" data-delay="200">
+          <div class="avatar-orbit">
+            <div class="avatar-ring"></div>
+            <div class="avatar">
+              {% if profile.profile_image %}
+                <img src="{{ profile.profile_image.url }}" alt="Portrait of {{ profile.full_name }}" width="360" height="360">
+              {% else %}
+                <span class="avatar__name">{{ profile.first_name }}</span>
+              {% endif %}
+            </div>
+            <span class="orbit-chip orbit-chip--1"><i class="devicon-python-plain colored"></i></span>
+            <span class="orbit-chip orbit-chip--2"><i class="devicon-django-plain"></i></span>
+            <span class="orbit-chip orbit-chip--3"><i class="devicon-javascript-plain colored"></i></span>
+            <span class="orbit-chip orbit-chip--4"><i class="devicon-postgresql-plain colored"></i></span>
+
+            <div class="code-float glass-card">
+              <span class="code-float__dots"><i></i><i></i><i></i></span>
+              <code><span class="tk-kw">def</span> <span class="tk-fn">build</span>(<span class="tk-var">idea</span>):<br>
+              &nbsp;&nbsp;<span class="tk-kw">return</span> <span class="tk-str">"🚀 shipped"</span></code>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <a href="#about" class="scroll-cue" aria-label="Scroll to About section">
+    <span class="scroll-cue__mouse"><span></span></span>
+    <span class="scroll-cue__text">Scroll</span>
+  </a>
+</section>

@@ -1,0 +1,52 @@
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <span class="shead__label reveal"><span class="shead__num">05</span>Contact</span>
+    <h2 class="mega"><span class="mask"><span>Let's talk.</span></span></h2>
+
+    <div class="mega-mail reveal">
+      <a href="mailto:{{ profile.email }}">{{ profile.email }}</a>
+      <button class="round-btn" type="button" data-copy="{{ profile.email }}" aria-label="Copy email address"><i class="bi bi-copy"></i></button>
+    </div>
+
+    <div class="contact__grid">
+      <div class="contact__info reveal">
+        <p class="muted">Have a role, project or question? Send a message and I'll get back to you.</p>
+        <ul class="facts">
+          {% if profile.phone %}<li><span>Phone</span><a href="tel:{{ profile.phone|cut:' ' }}">{{ profile.phone }}</a></li>{% endif %}
+          {% if profile.location %}<li><span>Location</span>{{ profile.location }}</li>{% endif %}
+        </ul>
+        {% include "v5/partials/socials.html" %}
+      </div>
+
+      <form class="form reveal" data-delay="100" id="contactForm" method="post" action="{% url 'portfolio:contact' %}" novalidate>
+        {% csrf_token %}
+        {% for message in messages %}<div class="note note--{{ message.tags }}" role="alert">{{ message }}</div>{% endfor %}
+        {% if form.non_field_errors %}<div class="note note--error" role="alert">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="{{ form.website.id_for_label }}">Leave this empty</label>
+          {{ form.website }}
+        </div>
+
+        <div class="row g-4">
+          {% for field in form.visible_fields %}
+            {% if field.name != "website" %}
+              <div class="{% if field.name == 'name' or field.name == 'email' %}col-md-6{% else %}col-12{% endif %}">
+                <div class="line-field">
+                  {{ field }}
+                  <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                </div>
+                <div class="invalid-feedback d-block" data-error-for="{{ field.name }}">{{ field.errors|join:" " }}</div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <button type="submit" class="btn-solid mt-4" id="contactSubmit">
+          <span class="btn-label">Send message <i class="bi bi-arrow-right"></i></span>
+          <span class="btn-loading"><span class="spinner-border spinner-border-sm"></span> Sending…</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

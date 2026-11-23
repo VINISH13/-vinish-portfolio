@@ -1,0 +1,33 @@
+<section class="hero" id="home">
+  <canvas id="scene" class="hero__scene" aria-hidden="true"></canvas>
+  <div class="hero__fallback" aria-hidden="true"></div>
+
+  <div class="wrap hero__content">
+    <p class="hero__kicker reveal">
+      {% if profile.available_for_work %}<span class="live-dot"></span>Available for work{% endif %}
+      {% if profile.available_for_work and profile.location %}<span class="sep">·</span>{% endif %}
+      {% if profile.location %}{{ profile.location }}{% endif %}
+    </p>
+
+    <h1 class="hero__name"><span class="mask"><span>{{ profile.full_name }}</span></span></h1>
+
+    <p class="hero__role reveal" data-delay="150" aria-live="polite">
+      <span id="typedText">{{ profile.roles_list.0 }}</span><span class="caret" aria-hidden="true"></span>
+    </p>
+
+    <p class="hero__intro reveal" data-delay="250">{{ profile.hero_intro }}</p>
+
+    <div class="hero__actions reveal" data-delay="350">
+      <a href="#contact" class="btn-solid">Get in touch <i class="bi bi-arrow-right"></i></a>
+      {% if profile.resume %}
+        <a href="{{ profile.resume.url }}" class="btn-line" download>Download resume</a>
+      {% else %}
+        <a href="#projects" class="btn-line">See my work</a>
+      {% endif %}
+    </div>
+  </div>
+
+  <a class="scroll-hint" href="#about" aria-label="Scroll to About">
+    <span>Scroll</span><i></i>
+  </a>
+</section>

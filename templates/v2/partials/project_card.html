@@ -1,0 +1,24 @@
+{# Param: project #}
+<article class="proj card" data-spotlight>
+  <a class="proj__media" href="{{ project.get_absolute_url }}" aria-label="Open {{ project.title }}">
+    {% if project.image %}
+      <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}" loading="lazy">
+    {% else %}
+      <span class="proj__mesh" aria-hidden="true"></span>
+      <i class="bi {{ project.icon }} proj__icon" aria-hidden="true"></i>
+    {% endif %}
+    {% if project.is_featured %}<span class="proj__flag"><i class="bi bi-star-fill"></i> Featured</span>{% endif %}
+  </a>
+  <div class="proj__body">
+    <span class="proj__cat">{{ project.category.name|default:"Project" }}{% if project.completed_on %} · {{ project.completed_on|date:"Y" }}{% endif %}</span>
+    <h3 class="proj__title"><a href="{{ project.get_absolute_url }}">{{ project.title }}</a><i class="bi bi-arrow-up-right" aria-hidden="true"></i></h3>
+    <p class="proj__text">{{ project.tagline }}</p>
+    {% include "v2/partials/chips.html" with technologies=project.technologies.all limit=4 %}
+    {% if project.github_url or project.live_url %}
+      <div class="proj__links">
+        {% if project.github_url %}<a href="{{ project.github_url }}" target="_blank" rel="noopener"><i class="bi bi-github"></i> Code</a>{% endif %}
+        {% if project.live_url %}<a href="{{ project.live_url }}" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live demo</a>{% endif %}
+      </div>
+    {% endif %}
+  </div>
+</article>

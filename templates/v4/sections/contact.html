@@ -1,0 +1,62 @@
+<section class="section" id="contact">
+  <div class="container-x">
+    <div class="contact">
+      <div class="contact__intro reveal">
+        <span class="eyebrow">Contact</span>
+        <h2 class="sec-title">Let's work together</h2>
+        <p class="sec-sub">Have a role, project or question? Send me a message and I'll get back to you.</p>
+
+        <ul class="contact__list">
+          <li>
+            <span class="contact__icon"><i class="bi bi-envelope"></i></span>
+            <div><small>Email</small><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></div>
+            <button class="icon-btn icon-btn--sm" type="button" data-copy="{{ profile.email }}" aria-label="Copy email address"><i class="bi bi-copy"></i></button>
+          </li>
+          {% if profile.phone %}
+            <li>
+              <span class="contact__icon"><i class="bi bi-telephone"></i></span>
+              <div><small>Phone</small><a href="tel:{{ profile.phone|cut:' ' }}">{{ profile.phone }}</a></div>
+              <button class="icon-btn icon-btn--sm" type="button" data-copy="{{ profile.phone }}" aria-label="Copy phone number"><i class="bi bi-copy"></i></button>
+            </li>
+          {% endif %}
+          {% if profile.location %}
+            <li>
+              <span class="contact__icon"><i class="bi bi-geo-alt"></i></span>
+              <div><small>Location</small><span>{{ profile.location }}</span></div>
+            </li>
+          {% endif %}
+        </ul>
+      </div>
+
+      <form class="card-pro contact__form reveal" data-delay="100" id="contactForm" method="post" action="{% url 'portfolio:contact' %}" novalidate>
+        {% csrf_token %}
+        {% for message in messages %}
+          <div class="note note--{{ message.tags }}" role="alert">{{ message }}</div>
+        {% endfor %}
+        {% if form.non_field_errors %}<div class="note note--error" role="alert">{{ form.non_field_errors|join:" " }}</div>{% endif %}
+
+        <div class="hp-field" aria-hidden="true">
+          <label for="{{ form.website.id_for_label }}">Leave this empty</label>
+          {{ form.website }}
+        </div>
+
+        <div class="row g-3">
+          {% for field in form.visible_fields %}
+            {% if field.name != "website" %}
+              <div class="{% if field.name == 'name' or field.name == 'email' %}col-md-6{% else %}col-12{% endif %}">
+                <label class="field-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                <div class="invalid-feedback" data-error-for="{{ field.name }}">{{ field.errors|join:" " }}</div>
+              </div>
+            {% endif %}
+          {% endfor %}
+        </div>
+
+        <button type="submit" class="btn-pro btn-pro--primary btn-pro--block" id="contactSubmit">
+          <span class="btn-label">Send message <i class="bi bi-send"></i></span>
+          <span class="btn-loading"><span class="spinner-border spinner-border-sm"></span> Sending…</span>
+        </button>
+      </form>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% load portfolio_tags %}
+
+{% block title %}{{ project.title }} — {{ profile.full_name|default:"Portfolio" }}{% endblock %}
+{% block meta_description %}{{ project.tagline }}{% endblock %}
+{% block body_class %}page-detail{% endblock %}
+
+{% block content %}
+<section class="section detail-hero">
+  <div class="container">
+    <nav class="crumbs reveal" aria-label="Breadcrumb">
+      <a href="{% url 'portfolio:home' %}#projects"><i class="bi bi-arrow-left"></i> All projects</a>
+      {% if project.category %}<span>/</span><span>{{ project.category.name }}</span>{% endif %}
+    </nav>
+
+    <div class="row g-5 align-items-center">
+      <div class="col-lg-6 reveal" data-anim="left">
+        {% if project.is_featured %}<span class="status-pill"><i class="bi bi-star-fill"></i> Featured project</span>{% endif %}
+        <h1 class="detail-title">{{ project.title }}</h1>
+        <p class="detail-tagline">{{ project.tagline }}</p>
+        {% include "portfolio/components/tech_badges.html" with technologies=project.technologies.all limit=0 %}
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          {% if project.live_url %}<a href="{{ project.live_url }}" class="btn btn-neon btn-lg" target="_blank" rel="noopener"><i class="bi bi-box-arrow-up-right"></i> Live Demo</a>{% endif %}
+          {% if project.github_url %}<a href="{{ project.github_url }}" class="btn btn-ghost btn-lg" target="_blank" rel="noopener"><i class="bi bi-github"></i> Source Code</a>{% endif %}
+        </div>
+      </div>
+      <div class="col-lg-6 reveal" data-anim="right">
+        <div class="detail-media glass-card gradient-border">
+          {% if project.image %}
+            <img src="{{ project.image.url }}" alt="Screenshot of {{ project.title }}">
+          {% else %}
+            <div class="project-card__placeholder project-card__placeholder--lg">
+              <i class="bi {{ project.icon }}"></i><span>{{ project.title }}</span>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section pt-0">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8 reveal">
+        <div class="glass-card p-4 p-lg-5 h-100">
+          <h2 class="h4 mb-4"><i class="bi bi-journal-text text-gradient me-2"></i>Overview</h2>
+          <div class="about-copy">
+            {% for p in project.description|paragraphs %}<p>{{ p }}</p>{% endfor %}
+          </div>
+          {% if project.features_list %}
+            <h3 class="h5 mt-4 mb-3">Key features</h3>
+            <ul class="check-list">{% for f in project.features_list %}<li>{{ f }}</li>{% endfor %}</ul>
+          {% endif %}
+        </div>
+      </div>
+      <div class="col-lg-4 reveal" data-delay="150">
+        <aside class="glass-card p-4 h-100 detail-meta">
+          <h2 class="h5 mb-4">Project info</h2>
+          <dl>
+            {% if project.category %}<dt>Category</dt><dd>{{ project.category.name }}</dd>{% endif %}
+            {% if project.completed_on %}<dt>Completed</dt><dd>{{ project.completed_on|date:"F Y" }}</dd>{% endif %}
+            <dt>Stack</dt><dd>{{ project.technologies.all|join:", "|default:"—" }}</dd>
+            {% if project.github_url %}<dt>Repository</dt><dd><a href="{{ project.github_url }}" target="_blank" rel="noopener">GitHub <i class="bi bi-arrow-up-right"></i></a></dd>{% endif %}
+            {% if project.live_url %}<dt>Live</dt><dd><a href="{{ project.live_url }}" target="_blank" rel="noopener">Visit site <i class="bi bi-arrow-up-right"></i></a></dd>{% endif %}
+          </dl>
+        </aside>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% if related_projects %}
+<section class="section section--alt">
+  <div class="container">
+    {% include "portfolio/components/section_header.html" with eyebrow="Keep exploring" title="Related" highlight="projects" %}
+    <div class="row g-4">
+      {% for project in related_projects %}
+        <div class="col-md-6 col-lg-4 reveal" data-delay="{% cycle '0' '100' '200' %}">
+          {% include "portfolio/components/project_card.html" %}
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endif %}
+{% endblock %}

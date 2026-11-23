@@ -1,0 +1,51 @@
+{% load portfolio_tags %}
+<section class="section" id="about">
+  <div class="container">
+    {% include "portfolio/components/section_header.html" with eyebrow="About me" title="Engineer by craft," highlight="builder by heart" %}
+
+    <div class="row g-4 g-lg-5 align-items-stretch">
+      <div class="col-lg-5 reveal" data-anim="left">
+        <div class="code-window glass-card h-100 tilt">
+          <div class="code-window__bar">
+            <span class="dots"><i></i><i></i><i></i></span>
+            <span class="code-window__file"><i class="devicon-python-plain colored"></i> developer.py</span>
+          </div>
+<pre class="code-window__body"><code><span class="tk-kw">class</span> <span class="tk-cls">Developer</span>:
+    <span class="tk-kw">def</span> <span class="tk-fn">__init__</span>(<span class="tk-self">self</span>):
+        <span class="tk-self">self</span>.name = <span class="tk-str">"{{ profile.full_name }}"</span>
+        <span class="tk-self">self</span>.role = <span class="tk-str">"{{ profile.headline }}"</span>{% if profile.location %}
+        <span class="tk-self">self</span>.based_in = <span class="tk-str">"{{ profile.location }}"</span>{% endif %}
+        <span class="tk-self">self</span>.stack = [{% for cat in skill_categories|slice:":1" %}{% for s in cat.skills.all|slice:":3" %}
+            <span class="tk-str">"{{ s.name }}"</span>,{% endfor %}{% endfor %}
+        ]
+        <span class="tk-self">self</span>.open_to_work = <span class="tk-bool">{{ profile.available_for_work|yesno:"True,False" }}</span>
+
+    <span class="tk-kw">def</span> <span class="tk-fn">motto</span>(<span class="tk-self">self</span>):
+        <span class="tk-kw">return</span> <span class="tk-str">"Clean code. Real impact."</span></code></pre>
+        </div>
+      </div>
+
+      <div class="col-lg-7 reveal" data-anim="right">
+        <div class="about-copy">
+          {% for p in profile.about|paragraphs %}
+            <p{% if forloop.first %} class="lead-text"{% endif %}>{{ p }}</p>
+          {% endfor %}
+        </div>
+
+        <div class="info-grid">
+          {% if profile.location %}
+            <div class="info-tile glass-card"><i class="bi bi-geo-alt-fill"></i><div><small>Location</small><span>{{ profile.location }}</span></div></div>
+          {% endif %}
+          <div class="info-tile glass-card"><i class="bi bi-envelope-fill"></i><div><small>Email</small><a href="mailto:{{ profile.email }}">{{ profile.email }}</a></div></div>
+          <div class="info-tile glass-card"><i class="bi bi-briefcase-fill"></i><div><small>Experience</small><span>{{ profile.years_experience }}+ years</span></div></div>
+          <div class="info-tile glass-card"><i class="bi bi-lightning-charge-fill"></i><div><small>Status</small><span>{% if profile.available_for_work %}Open to work{% else %}Not available{% endif %}</span></div></div>
+        </div>
+
+        <div class="d-flex flex-wrap gap-3 mt-4">
+          <a href="#contact" class="btn btn-neon"><i class="bi bi-chat-dots-fill"></i> Let's talk</a>
+          {% if profile.resume %}<a href="{{ profile.resume.url }}" class="btn btn-ghost" download><i class="bi bi-file-earmark-arrow-down"></i> Resume</a>{% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,30 @@
+<section class="section" id="experience">
+  <div class="wrap">
+    {% include "v5/partials/section_head.html" with num="02" label="Experience" title="Where I've worked" %}
+
+    <div class="rows">
+      {% for exp in experiences %}
+        <article class="row-item reveal">
+          <div class="row-item__when">
+            <span>{{ exp.start_date|date:"M Y" }} — {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y"|default:"Present" }}{% endif %}</span>
+            <small>{{ exp.duration }}</small>
+          </div>
+          <div class="row-item__main">
+            <h3 class="row-item__title">{{ exp.title }}</h3>
+            <p class="row-item__sub">
+              {% if exp.company_url %}<a href="{{ exp.company_url }}" target="_blank" rel="noopener">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}
+              <span class="sep">·</span>{{ exp.get_employment_type_display }}{% if exp.is_current %} <span class="now">Now</span>{% endif %}
+            </p>
+            {% if exp.summary %}<p class="muted">{{ exp.summary }}</p>{% endif %}
+            {% if exp.highlights_list %}
+              <ul class="lines">{% for h in exp.highlights_list %}<li>{{ h }}</li>{% endfor %}</ul>
+            {% endif %}
+            {% include "v5/partials/tags.html" with technologies=exp.technologies.all limit=0 %}
+          </div>
+        </article>
+      {% empty %}
+        <p class="muted">Add experience from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>

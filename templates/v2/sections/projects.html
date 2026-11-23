@@ -1,0 +1,26 @@
+<section class="section" id="projects">
+  <div class="wrap">
+    <div class="sec-row">
+      {% include "v2/partials/section_head.html" with num="03" label="Projects" title="Selected" highlight="work" %}
+      {% if project_categories|length > 1 %}
+        <div class="segmented reveal" role="tablist" aria-label="Filter projects">
+          <button class="segmented__btn is-active" type="button" data-filter="all" role="tab" aria-selected="true">All</button>
+          {% for cat in project_categories %}
+            <button class="segmented__btn" type="button" data-filter="{{ cat.slug }}" role="tab" aria-selected="false">{{ cat.name }}</button>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <div class="proj-grid" id="projectGrid">
+      {% for project in projects %}
+        <div class="project-item reveal" data-category="{{ project.category.slug|default:'none' }}" data-delay="{% cycle '0' '80' '160' %}">
+          {% include "v2/partials/project_card.html" %}
+        </div>
+      {% empty %}
+        <p class="muted">Projects added in the admin panel will appear here.</p>
+      {% endfor %}
+    </div>
+    <p class="muted text-center d-none" id="filterEmpty">No projects in this category yet.</p>
+  </div>
+</section>

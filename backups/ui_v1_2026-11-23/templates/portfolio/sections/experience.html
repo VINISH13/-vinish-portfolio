@@ -1,0 +1,39 @@
+<section class="section" id="experience">
+  <div class="container">
+    {% include "portfolio/components/section_header.html" with eyebrow="Work experience" title="Where I've" highlight="made an impact" subtitle="Internships and professional roles where I shipped real features for real users." %}
+
+    <div class="timeline">
+      {% for exp in experiences %}
+        <article class="timeline__item reveal" data-anim="{% cycle 'left' 'right' %}">
+          <span class="timeline__node{% if exp.is_current %} is-current{% endif %}" aria-hidden="true"></span>
+          <div class="timeline__card glass-card gradient-border">
+            <header class="timeline__head">
+              <div>
+                <span class="type-badge type-badge--{{ exp.employment_type }}">{{ exp.get_employment_type_display }}</span>
+                <h3 class="timeline__role">{{ exp.title }}</h3>
+                <p class="timeline__company">
+                  <i class="bi bi-building"></i>
+                  {% if exp.company_url %}<a href="{{ exp.company_url }}" target="_blank" rel="noopener">{{ exp.company }}</a>{% else %}{{ exp.company }}{% endif %}
+                  {% if exp.location %}<span class="sep">•</span><i class="bi bi-geo-alt"></i> {{ exp.location }}{% endif %}
+                </p>
+              </div>
+              <div class="timeline__date">
+                <span><i class="bi bi-calendar3"></i> {{ exp.start_date|date:"M Y" }} — {% if exp.is_current %}Present{% else %}{{ exp.end_date|date:"M Y"|default:"Present" }}{% endif %}</span>
+                <small>{{ exp.duration }}</small>
+              </div>
+            </header>
+            {% if exp.summary %}<p class="timeline__summary">{{ exp.summary }}</p>{% endif %}
+            {% if exp.highlights_list %}
+              <ul class="check-list">
+                {% for h in exp.highlights_list %}<li>{{ h }}</li>{% endfor %}
+              </ul>
+            {% endif %}
+            {% include "portfolio/components/tech_badges.html" with technologies=exp.technologies.all limit=0 %}
+          </div>
+        </article>
+      {% empty %}
+        <p class="text-center text-muted-soft">Add experience entries from the admin panel.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
