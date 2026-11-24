@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>{% block title %}{% if profile %}{{ profile.full_name }} — {{ profile.headline }}{% else %}Developer Portfolio{% endif %}{% endblock %}</title>
-  <meta name="description" content="{% block meta_description %}{{ profile.meta_description|default:profile.hero_intro|default:'Developer portfolio'|truncatechars:160 }}{% endblock %}">
+  <meta name="description" content="{% block meta_description %}{% if profile %}{{ profile.meta_description|default:profile.hero_intro|default:'Developer portfolio'|truncatechars:160 }}{% else %}Developer portfolio{% endif %}{% endblock %}">
   <meta name="theme-color" content="#03040b">
   <meta property="og:title" content="{% if profile %}{{ profile.full_name }} — {{ profile.headline }}{% else %}Developer Portfolio{% endif %}">
   <meta property="og:type" content="website">

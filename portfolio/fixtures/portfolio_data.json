@@ -1,0 +1,740 @@
+[
+{
+  "model": "portfolio.technology",
+  "pk": 1,
+  "fields": {
+    "name": "Python",
+    "icon_class": "devicon-python-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 2,
+  "fields": {
+    "name": "Django",
+    "icon_class": "devicon-django-plain"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 3,
+  "fields": {
+    "name": "Django REST Framework",
+    "icon_class": "devicon-djangorest-plain"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 4,
+  "fields": {
+    "name": "FastAPI",
+    "icon_class": "devicon-fastapi-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 5,
+  "fields": {
+    "name": "Flask",
+    "icon_class": "devicon-flask-original"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 6,
+  "fields": {
+    "name": "JavaScript",
+    "icon_class": "devicon-javascript-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 7,
+  "fields": {
+    "name": "TypeScript",
+    "icon_class": "devicon-typescript-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 8,
+  "fields": {
+    "name": "React",
+    "icon_class": "devicon-react-original colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 9,
+  "fields": {
+    "name": "HTML5",
+    "icon_class": "devicon-html5-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 10,
+  "fields": {
+    "name": "CSS3",
+    "icon_class": "devicon-css3-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 11,
+  "fields": {
+    "name": "Bootstrap",
+    "icon_class": "devicon-bootstrap-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 12,
+  "fields": {
+    "name": "Tailwind CSS",
+    "icon_class": "devicon-tailwindcss-original colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 13,
+  "fields": {
+    "name": "PostgreSQL",
+    "icon_class": "devicon-postgresql-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 14,
+  "fields": {
+    "name": "MySQL",
+    "icon_class": "devicon-mysql-original colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 15,
+  "fields": {
+    "name": "SQLite",
+    "icon_class": "devicon-sqlite-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 16,
+  "fields": {
+    "name": "Redis",
+    "icon_class": "devicon-redis-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 17,
+  "fields": {
+    "name": "Celery",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 18,
+  "fields": {
+    "name": "Docker",
+    "icon_class": "devicon-docker-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 19,
+  "fields": {
+    "name": "Git",
+    "icon_class": "devicon-git-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 20,
+  "fields": {
+    "name": "GitHub Actions",
+    "icon_class": "devicon-githubactions-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 21,
+  "fields": {
+    "name": "AWS",
+    "icon_class": "devicon-amazonwebservices-plain-wordmark colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 22,
+  "fields": {
+    "name": "Linux",
+    "icon_class": "devicon-linux-plain"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 23,
+  "fields": {
+    "name": "Nginx",
+    "icon_class": "devicon-nginx-original colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 24,
+  "fields": {
+    "name": "Pandas",
+    "icon_class": "devicon-pandas-plain colored"
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 25,
+  "fields": {
+    "name": "WebSockets",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 26,
+  "fields": {
+    "name": "Stripe",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 27,
+  "fields": {
+    "name": "Chart.js",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 28,
+  "fields": {
+    "name": "IoT",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 29,
+  "fields": {
+    "name": "Machine Learning",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 30,
+  "fields": {
+    "name": "REST APIs",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 31,
+  "fields": {
+    "name": "ThingSpeak",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 32,
+  "fields": {
+    "name": "Random Forest",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.technology",
+  "pk": 33,
+  "fields": {
+    "name": "Twilio",
+    "icon_class": ""
+  }
+},
+{
+  "model": "portfolio.skillcategory",
+  "pk": 1,
+  "fields": {
+    "name": "Backend Development",
+    "icon": "bi-server",
+    "description": "APIs, business logic and data modelling.",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.skillcategory",
+  "pk": 2,
+  "fields": {
+    "name": "Frontend Development",
+    "icon": "bi-window-stack",
+    "description": "Responsive, accessible, pixel-perfect UIs.",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.skillcategory",
+  "pk": 3,
+  "fields": {
+    "name": "Databases",
+    "icon": "bi-database",
+    "description": "Schema design, query tuning and caching.",
+    "order": 2
+  }
+},
+{
+  "model": "portfolio.skillcategory",
+  "pk": 4,
+  "fields": {
+    "name": "DevOps & Tools",
+    "icon": "bi-gear-wide-connected",
+    "description": "Shipping reliably from laptop to cloud.",
+    "order": 3
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 1,
+  "fields": {
+    "category": 1,
+    "name": "Python",
+    "proficiency": 92,
+    "icon_class": "devicon-python-plain colored",
+    "order": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 2,
+  "fields": {
+    "category": 1,
+    "name": "Django",
+    "proficiency": 90,
+    "icon_class": "devicon-django-plain",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 3,
+  "fields": {
+    "category": 1,
+    "name": "Django REST Framework",
+    "proficiency": 85,
+    "icon_class": "devicon-djangorest-plain",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 4,
+  "fields": {
+    "category": 1,
+    "name": "FastAPI",
+    "proficiency": 72,
+    "icon_class": "devicon-fastapi-plain colored",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 5,
+  "fields": {
+    "category": 1,
+    "name": "Celery",
+    "proficiency": 68,
+    "icon_class": "",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 6,
+  "fields": {
+    "category": 2,
+    "name": "JavaScript",
+    "proficiency": 84,
+    "icon_class": "devicon-javascript-plain colored",
+    "order": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 7,
+  "fields": {
+    "category": 2,
+    "name": "HTML5",
+    "proficiency": 92,
+    "icon_class": "devicon-html5-plain colored",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 8,
+  "fields": {
+    "category": 2,
+    "name": "CSS3",
+    "proficiency": 88,
+    "icon_class": "devicon-css3-plain colored",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 9,
+  "fields": {
+    "category": 2,
+    "name": "Bootstrap",
+    "proficiency": 90,
+    "icon_class": "devicon-bootstrap-plain colored",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 10,
+  "fields": {
+    "category": 2,
+    "name": "React",
+    "proficiency": 70,
+    "icon_class": "devicon-react-original colored",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 11,
+  "fields": {
+    "category": 3,
+    "name": "PostgreSQL",
+    "proficiency": 82,
+    "icon_class": "devicon-postgresql-plain colored",
+    "order": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 12,
+  "fields": {
+    "category": 3,
+    "name": "MySQL",
+    "proficiency": 78,
+    "icon_class": "devicon-mysql-original colored",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 13,
+  "fields": {
+    "category": 3,
+    "name": "SQLite",
+    "proficiency": 85,
+    "icon_class": "devicon-sqlite-plain colored",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 14,
+  "fields": {
+    "category": 3,
+    "name": "Redis",
+    "proficiency": 66,
+    "icon_class": "devicon-redis-plain colored",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 15,
+  "fields": {
+    "category": 4,
+    "name": "Git",
+    "proficiency": 90,
+    "icon_class": "devicon-git-plain colored",
+    "order": 0,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 16,
+  "fields": {
+    "category": 4,
+    "name": "Docker",
+    "proficiency": 74,
+    "icon_class": "devicon-docker-plain colored",
+    "order": 1,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 17,
+  "fields": {
+    "category": 4,
+    "name": "Linux",
+    "proficiency": 78,
+    "icon_class": "devicon-linux-plain",
+    "order": 2,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 18,
+  "fields": {
+    "category": 4,
+    "name": "GitHub Actions",
+    "proficiency": 70,
+    "icon_class": "devicon-githubactions-plain colored",
+    "order": 3,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 19,
+  "fields": {
+    "category": 4,
+    "name": "AWS",
+    "proficiency": 62,
+    "icon_class": "devicon-amazonwebservices-plain-wordmark colored",
+    "order": 4,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.skill",
+  "pk": 20,
+  "fields": {
+    "category": 4,
+    "name": "Nginx",
+    "proficiency": 65,
+    "icon_class": "devicon-nginx-original colored",
+    "order": 5,
+    "is_active": true
+  }
+},
+{
+  "model": "portfolio.profile",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-11-22T16:05:05.032Z",
+    "updated_at": "2026-11-23T08:54:10.619Z",
+    "full_name": "Vinish",
+    "headline": "Junior Software Engineer | Python Developer (Django)",
+    "typing_roles": "Junior Software Engineer\nPython Developer (Django)",
+    "hero_intro": "I design and build fast, secure and scalable web applications with Python and Django — from clean REST APIs to polished, responsive interfaces that users love.",
+    "about": "I'm a Junior Software Engineer specialising in Python and Django, with a strong foundation in programming, data structures and algorithms.\n\nI build backend modules, REST APIs and database-driven features using Python, Django, MySQL, Redis and Celery, along with HTML, CSS and Bootstrap. My work includes Tamil Nadu Government portals, a task management system and an AI-assisted, IoT-based smart sewage system. I enjoy solving problems and learning something new every day.",
+    "profile_image": "profile/vinish.jpg",
+    "resume": "",
+    "email": "vinish13487@gmail.com",
+    "phone": "8072626202",
+    "location": "Chennai",
+    "github_url": "https://github.com/VINISH13",
+    "linkedin_url": "https://www.linkedin.com/",
+    "twitter_url": "",
+    "website_url": "",
+    "years_experience": 1,
+    "projects_completed": 3,
+    "available_for_work": true,
+    "meta_description": "Junior Software Engineer and Python Developer (Django) portfolio — projects, experience and skills."
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 1,
+  "fields": {
+    "created_at": "2026-11-22T16:05:05.035Z",
+    "updated_at": "2026-11-23T07:07:34.054Z",
+    "title": "Junior Software Engineer – Python (Django)",
+    "company": "Anand Techverce LLP",
+    "company_url": "",
+    "employment_type": "full_time",
+    "location": "",
+    "start_date": "2026-05-01",
+    "end_date": null,
+    "is_current": true,
+    "summary": "",
+    "highlights": "Developed and maintained backend modules using Python and Django, implementing application logic, database models, and CRUD functionalities to support business requirements.\nWorked on REST API development and database integration, handling data processing, request validation, and communication between frontend and backend components.\nContributed to multiple projects, including Task Management and Tamil Nadu Government iTNT & TNTTFC portals, performing feature development, debugging, testing, and improvements to existing functionalities.",
+    "order": 0,
+    "is_active": true,
+    "technologies": [
+      2,
+      1,
+      30
+    ]
+  }
+},
+{
+  "model": "portfolio.experience",
+  "pk": 2,
+  "fields": {
+    "created_at": "2026-11-22T16:05:05.037Z",
+    "updated_at": "2026-11-23T07:07:34.057Z",
+    "title": "Junior Software Engineer (Intern)",
+    "company": "Anand Techverce LLP",
+    "company_url": "",
+    "employment_type": "internship",
+    "location": "",
+    "start_date": "2025-12-01",
+    "end_date": "2026-05-31",
+    "is_current": false,
+    "summary": "",
+    "highlights": "Assisted in developing backend modules and REST APIs using Python and Django, gaining hands-on experience with real-world application development.\nWorked on database operations, bug fixing, and feature enhancements while understanding backend workflows and application architecture.\nCollaborated with senior developers on development tasks, testing, and debugging, successfully transitioning into a full-time Junior Software Engineer role.",
+    "order": 0,
+    "is_active": true,
+    "technologies": [
+      2,
+      1,
+      30
+    ]
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 4,
+  "fields": {
+    "name": "Web Apps",
+    "slug": "web-apps",
+    "order": 0
+  }
+},
+{
+  "model": "portfolio.projectcategory",
+  "pk": 5,
+  "fields": {
+    "name": "AI & IoT",
+    "slug": "ai-iot",
+    "order": 1
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 7,
+  "fields": {
+    "created_at": "2026-11-22T16:46:27.067Z",
+    "updated_at": "2026-11-23T08:52:06.638Z",
+    "title": "Tamil Nadu Government – iTNT & TNTTFC Software",
+    "slug": "itnt-tnttfc",
+    "category": 4,
+    "tagline": "Contributed to the development of software for Tamil Nadu Government’s iTNT and TNTTFC portals using Python and Django.",
+    "description": "Contributed to the development of software for Tamil Nadu Government’s iTNT and TNTTFC portals using Python and Django. Worked on backend development, REST APIs, database integration, business logic, testing, and debugging to deliver required portal functionalities.",
+    "key_features": "",
+    "image": "",
+    "icon": "bi-building",
+    "github_url": "",
+    "live_url": "",
+    "completed_on": null,
+    "is_featured": true,
+    "is_published": true,
+    "order": 0,
+    "technologies": [
+      2,
+      1,
+      30
+    ]
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 8,
+  "fields": {
+    "created_at": "2026-11-22T16:46:27.069Z",
+    "updated_at": "2026-11-23T08:52:06.642Z",
+    "title": "Task Management System",
+    "slug": "task-management-system",
+    "category": 4,
+    "tagline": "Independently developed a task management application using Python and Django to manage tasks, assignments, status tracking, and user workflows.",
+    "description": "Independently developed a task management application using Python and Django to manage tasks, assignments, status tracking, and user workflows. Implemented backend logic, REST APIs, database integration, and task-related functionalities.",
+    "key_features": "",
+    "image": "",
+    "icon": "bi-list-check",
+    "github_url": "",
+    "live_url": "",
+    "completed_on": null,
+    "is_featured": false,
+    "is_published": true,
+    "order": 1,
+    "technologies": [
+      2,
+      1,
+      30
+    ]
+  }
+},
+{
+  "model": "portfolio.project",
+  "pk": 9,
+  "fields": {
+    "created_at": "2026-11-22T16:46:27.071Z",
+    "updated_at": "2026-11-23T08:52:06.644Z",
+    "title": "AI-Assisted IoT Based Smart Sewage Monitoring System",
+    "slug": "ai-assisted-iot-based-smart-sewage-system",
+    "category": 5,
+    "tagline": "Built an IoT-based sewage monitoring system using gas, water level, flow, and ultrasonic sensors, streaming live data to ThingSpeak and processing it with a Flask backend.",
+    "description": "Built an IoT-based sewage monitoring system using gas, water level, flow, and ultrasonic sensors, streaming live data to ThingSpeak and processing it with a Flask backend. Used a Random Forest model to forecast sensor trends, with rule-based danger detection, instant Twilio SMS alerts, and a live dashboard.",
+    "key_features": "",
+    "image": "",
+    "icon": "bi-cpu",
+    "github_url": "",
+    "live_url": "",
+    "completed_on": null,
+    "is_featured": true,
+    "is_published": true,
+    "order": 2,
+    "technologies": [
+      5,
+      28,
+      1,
+      32,
+      31,
+      33
+    ]
+  }
+},
+{
+  "model": "portfolio.education",
+  "pk": 3,
+  "fields": {
+    "degree": "Bachelor of Technology (B.Tech)",
+    "field_of_study": "Information Technology",
+    "institution": "SRM Institute of Science and Technology",
+    "institution_url": "",
+    "location": "Ramapuram, Chennai",
+    "start_year": 2022,
+    "end_year": 2026,
+    "grade": "CGPA 7.71",
+    "description": "",
+    "order": 0
+  }
+}
+]
